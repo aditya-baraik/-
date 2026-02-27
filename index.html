@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Cheek Baraik | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'DM Sans',sans-serif;
+background:#f8fafc;
+color:#1f2937;
+line-height:1.7;
+}
+
+/* HEADER */
+header{
+min-height:60vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+background:linear-gradient(135deg,#dde9ee 0%, #f3e9e4 100%);
+}
+
+.profile-img{
+width:190px;
+height:190px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #1e3a8a;
+margin-bottom:25px;
+box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+h1{
+font-family:'Cormorant Garamond',serif;
+font-size:46px;
+font-weight:700;
+margin-bottom:12px;
+}
+
+h2{
+font-family:'Cormorant Garamond',serif;
+font-weight:600;
+font-size:22px;
+color:#1e3a8a;
+margin-bottom:18px;
+}
+
+/* NAVIGATION */
+.top-nav{
+background:#ffffff;
+display:flex;
+justify-content:center;
+gap:60px;              /* thoda zyada spacing */
+flex-wrap:wrap;
+padding:20px 10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+.top-nav a{
+text-decoration:none;
+font-family:'Cormorant Garamond',serif;   /* heading family */
+font-size:30px;                           /* bigger */
+font-weight:600;                          /* thoda bold */
+color:#1e3a8a;
+position:relative;
+letter-spacing:0.5px;
+}
+
+.top-nav a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-6px;
+width:0%;
+height:2px;
+background:#0f766e;
+transition:0.3s;
+}
+
+.top-nav a:hover::after{
+width:100%;
+}
+/* SECTION */
+section{
+padding:90px 10%;
+}
+
+.section-title{
+font-family:'Cormorant Garamond',serif;
+font-size:36px;
+font-weight:700;
+margin-bottom:40px;
+padding-left:15px;
+border-left:6px solid #0f766e;
+}
+
+/* SUB HEADINGS */
+h4{
+font-family:'Cormorant Garamond',serif;
+font-weight:600;
+font-size:22px;
+margin-bottom:18px;
+color:#1e3a8a;
+}
+
+/* CARDS */
+.skills, .experience{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:35px;
+}
+
+.card{
+background:#ffffff;
+padding:30px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 18px 35px rgba(0,0,0,0.1);
+}
+
+.card p,
+.card li{
+color:#1f2937;
+}
+
+/* BODY TEXT */
+p{
+font-size:17px;
+margin-bottom:18px;
+}
+
+ul{
+padding-left:20px;
+}
+
+ul li{
+margin-bottom:12px;
+}
+
+/* EDUCATION */
+.education-box{
+background:#ffffff;
+padding:35px;
+border-radius:14px;
+box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+.education-item{
+margin-bottom:22px;
+}
+
+.education-item h5{
+font-family:'Cormorant Garamond',serif;
+font-weight:600;
+font-size:22px;
+margin-bottom:6px;
+color:#1e3a8a;
+}
+
+.education-item span{
+display:block;
+font-size:17px;
+color:#1f2937;
+}
+
+/* CONTACT GRID */
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+margin-top:30px;
+}
+
+.contact-column{
+display:flex;
+flex-direction:column;
+}
+
+.contact-item{
+display:flex;
+align-items:flex-start;
+gap:15px;
+margin-bottom:35px;
+text-decoration:none;
+color:#4b5563;
+}
+
+.contact-item i{
+font-size:20px;
+color:#1e3a8a;
+width:24px;
+margin-top:4px;
+}
+
+.contact-text{
+display:flex;
+flex-direction:column;
+}
+
+.contact-text strong{
+font-size:18px;
+font-weight:600;
+color:#1e3a8a;
+margin-bottom:6px;
+}
+
+.contact-text span{
+font-size:16px;
+color:#6b7280;
+line-height:1.8;
+margin-top:6px;
+}
+
+.contact-item:hover strong{
+color:#0f766e;
+}
+
+/* ANIMATION */
+.fade-in{
+opacity:0;
+transform:translateY(25px);
+transition:1s;
+}
+
+.fade-in.active{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:768px){
+.skills,
+.experience{
+grid-template-columns:repeat(2,1fr);
+}
+section{
+padding:60px 5%;
+}
+}
+
+/* GRID LAYOUT */
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+margin-top:30px;
+}
+
+.contact-column{
+display:flex;
+flex-direction:column;
+}
+
+/* ITEM */
+.contact-item{
+display:flex;
+align-items:flex-start;
+gap:15px;
+margin-bottom:35px;
+text-decoration:none;
+color:#1f2937;
+}
+
+.contact-item i{
+font-size:20px;
+color:#1e3a8a;
+width:24px;
+margin-top:4px;
+}
+
+/* TEXT */
+.contact-text{
+display:flex;
+flex-direction:column;
+}
+
+.contact-text strong{
+font-size:18px;
+font-weight:600;
+color:#1e3a8a;
+margin-bottom:8px;
+}
+
+footer{
+background:#d6e1e6;
+padding:32px 20px;
+text-align:center;
+font-size:15px;
+color:#475569;
+box-shadow:0 -2px 8px rgba(0,0,0,0.05);
+}
+
+/* MATCH WORK EXPERIENCE BODY */
+.contact-text span{
+font-size:17px;              /* same as body */
+color:#1f2937;               /* same color */
+line-height:1.7;             /* same spacing */
+}
+
+@media (max-width: 768px){
+  
+  .contact-grid{
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .contact-item{
+    margin-bottom: 25px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="pp.png" alt="Profile Photo" class="profile-img">
+<h1>ADITYA CHEEK BARAIK</h1>
+<h2>Creative Digital Content Specialist & Computer Instructor</h2>
+<p class="tagline">
+Designing visuals, crafting written content, and building structured digital experiences.
+</p>
+</header>
+
+<nav class="top-nav">
+<a href="#about">About Me</a>
+<a href="#skills">Technical & Creative Skills</a>
+<a href="#experience">Work Experience</a>
+<a href="#education">Education</a>
+<a href="#contact">Connect With Me</a>
+</nav>
+
+<section id="about" class="fade-in">
+<h3 class="section-title">About Me</h3>
+<p>
+Computer Instructor and English Honours student with hands-on experience training 60+ students in Basic Computing and MS Office. Alongside teaching, I actively work at the intersection of design, writing, and visual content creation.
+</p>
+<p>
+Over the years, I have developed practical skills in HTML, basic Python, and digital tools, while also building creative expertise in photography, graphic design, and photo editing using Canva and Adobe Lightroom. My experience as a Technical Assistant and Computer Trainer has strengthened my communication, problem-solving, and operational abilities.
+</p>
+<p>
+I am particularly interested in digital storytelling transforming ideas into meaningful visual and written content that is both creative and strategically effective. Currently, I am focused on expanding my knowledge in digital marketing, AI-assisted tools, and content strategy to create content that not only looks visually appealing but also delivers measurable impact.
+</p>
+<p>
+I continuously seek opportunities to learn, collaborate, and grow within the digital and creative ecosystem.
+</p>
+</section>
+
+<section id="skills" class="fade-in">
+<h3 class="section-title">Technical & Creative Skills</h3>
+<div class="skills">
+<div class="card">
+<h4>Web & Programming</h4>
+<ul>
+<li>HTML (Static Website Development)</li>
+<li>CSS (Basic Styling)</li>
+<li>Python (Fundamentals)</li>
+<li>Visual Basics</li>
+<li>GitHub (Static Deployment)</li>
+</ul>
+</div>
+
+<div class="card">
+<h4>Creative & Tools</h4>
+<ul>
+<li>Canva (Advanced Control)</li>
+<li>Adobe Lightroom</li>
+<li>MS Office (Intermediate)</li>
+<li>Visual Content Design</li>
+<li>Content Writing</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="experience" class="fade-in">
+<h3 class="section-title">Work Experience</h3>
+<div class="experience">
+<div class="card">
+<h4>Computer Trainer & Technical Coordinator</h4>
+<p>Block Level Institute for Rural Skill Acquisition (BIRSA)<br>
+Under Jharkhand Skill Development Mission Society (JSDMS)<br>
+August 2025 – Present</p>
+<ul>
+<li>Trained 60+ students in Basic Computer & MS Office</li>
+<li>Managed lab setup & documentation</li>
+<li>Handled technical troubleshooting</li>
+</ul>
+</div>
+
+<div class="card">
+<h4>Technical Assistant – Gas Office</h4>
+<ul>
+<li>Uploaded user booking data on portal</li>
+<li>Maintained digital records</li>
+</ul>
+</div>
+
+<div class="card">
+<h4>Media Assistant – Local Media</h4>
+<ul>
+<li>Shot & edited local event content</li>
+<li>Managed basic post-production</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="education" class="fade-in">
+<h3 class="section-title">Education</h3>
+<div class="education-box">
+<div class="education-item">
+<h5>Matriculation</h5>
+<span>Notre Dame School, Gumla</span>
+<span>Year: 2020 | Score: 64.6%</span>
+</div>
+<div class="education-item">
+<h5>Intermediate</h5>
+<span>Notre Dame School, Gumla</span>
+<span>Year: 2022 | Score: 64.6%</span>
+</div>
+<div class="education-item">
+<h5>Bachelor of Arts – English (Honours)</h5>
+<span>Kartik Oraon College, Gumla</span>
+<span>Expected Completion: June/July 2026</span>
+</div>
+</div>
+</section>
+
+<section id="contact" class="fade-in">
+<h3 class="section-title">Connect With Me</h3>
+
+<div class="contact-grid">
+
+<div class="contact-column">
+
+<a href="https://www.linkedin.com/in/aditya-cheek-baraik-8b8a953b3" target="_blank" rel="noopener noreferrer" class="contact-item">
+<i class="fab fa-linkedin"></i>
+<div class="contact-text">
+<strong>LinkedIn</strong>
+<span>Professional profile & career updates</span>
+</div>
+</a>
+
+<a href="https://github.com/aditya-baraik" target="_blank" rel="noopener noreferrer" class="contact-item">
+<i class="fab fa-github"></i>
+<div class="contact-text">
+<strong>GitHub</strong>
+<span>Code repositories & web projects</span>
+</div>
+</a>
+
+</div>
+
+
+<div class="contact-column">
+
+<a href="https://www.instagram.com/_random._.0ne_?igsh=MXRhcjl4eXh0OGF1bw==" target="_blank" rel="noopener noreferrer" class="contact-item">
+<i class="fab fa-instagram"></i>
+<div class="contact-text">
+<strong>Instagram</strong>
+<span>Photography & visual storytelling</span>
+</div>
+</a>
+
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=aditya.c.baraik@gmail.com" target="_blank" class="contact-item">
+<i class="fas fa-envelope"></i>
+<div class="contact-text">
+<strong>Email</strong>
+<span>Direct collaboration & inquiries</span>
+</div>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Aditya Cheek Baraik | All Rights Reserved
+</footer>
+
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const appearOptions = { threshold: 0.3 };
+
+const appearOnScroll = new IntersectionObserver(function(entries,observer){
+entries.forEach(entry=>{
+if(!entry.isIntersecting) return;
+entry.target.classList.add('active');
+observer.unobserve(entry.target);
+});
+}, appearOptions);
+
+faders.forEach(fader=>{
+appearOnScroll.observe(fader);
+});
+</script>
+
+</body>
+</html>
