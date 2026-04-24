@@ -622,7 +622,6 @@ footer {
     <img src="pp.png" alt="Profile Photo" class="profile-img">
   </div>
 
-  <p class="header-eyebrow fade-in">Portfolio — 2026</p>
   <h1 class="fade-in">Aditya Cheek Baraik</h1>
   <h2 class="subtitle fade-in">Creative Technologist &amp; Visual Designer</h2>
   <p class="tagline fade-in">Designing visuals, crafting stories, and building creative digital experiences.</p>
@@ -806,7 +805,7 @@ footer {
       </div>
     </a>
 
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aditya.c.baraik@gmail.com" target="_blank" class="contact-item">
+    <a href="mailto:aditya.c.baraik@gmail.com" id="email-link" class="contact-item">
       <div class="ci-icon"><i class="fas fa-envelope"></i></div>
       <div class="contact-text">
         <strong>Email</strong>
@@ -857,6 +856,41 @@ const navObserver = new IntersectionObserver(entries => {
 }, { rootMargin: '-40% 0px -50% 0px' });
 
 sections.forEach(s => navObserver.observe(s));
+
+/* Email: open in Gmail app if on Android/iOS, else open Gmail in browser */
+document.getElementById('email-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  const email = 'aditya.c.baraik@gmail.com';
+  const ua = navigator.userAgent || '';
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  if (isAndroid || isIOS) {
+    // Try native mailto first — on mobile this opens the default mail app
+    // (Gmail if set as default). A short timeout fallback opens Gmail web.
+    const mailtoLink = 'mailto:' + email;
+    const gmailAppAndroid = 'googlegmail://co?to=' + email;
+    const gmailWeb = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + email;
+
+    if (isAndroid) {
+      // Try Gmail app intent; if not installed the browser ignores it
+      const start = Date.now();
+      window.location = gmailAppAndroid;
+      setTimeout(function() {
+        // If we're still here after ~600ms, Gmail app didn't open — fall back to web
+        if (Date.now() - start < 1500) {
+          window.open(gmailWeb, '_blank');
+        }
+      }, 600);
+    } else {
+      // iOS: mailto opens default mail app (Gmail if set as default)
+      window.location = mailtoLink;
+    }
+  } else {
+    // Desktop: open Gmail web in new tab
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + email, '_blank');
+  }
+});
 </script>
 </body>
 </html>
