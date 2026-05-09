@@ -101,8 +101,16 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 28px 9%;
-  border-bottom: 1px solid var(--border);
   z-index: 2;
+}
+
+/* Line below toggle: toggle top(68) + track(28) + gap(7) + label(12) + spacing(10) = ~125px */
+.header-topbar::after {
+  content: "";
+  position: absolute;
+  top: 125px; left: 0; right: 0;
+  height: 1px;
+  background: var(--border);
 }
 .topbar-logo {
   font-family: var(--ff-mono);
@@ -128,7 +136,72 @@ header {
   box-shadow: 0 0 8px var(--lime);
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
- 
+
+/* ══ THEME TOGGLE (absolute, top-right, matching lighttheme placement) ══ */
+.theme-toggle-wrap {
+  position: absolute;
+  top: 68px;
+  right: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  z-index: 10;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.theme-toggle-label {
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  user-select: none;
+}
+
+.theme-toggle-track {
+  width: 54px;
+  height: 28px;
+  border-radius: 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  transition: background .3s, border-color .3s;
+}
+
+.theme-toggle-track:hover {
+  border-color: var(--lime-dim);
+}
+
+.toggle-letter {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+}
+
+.toggle-letter.d { color: var(--lime); }
+.toggle-letter.l { color: var(--text-dim); }
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--text-mid);
+  box-shadow: 0 2px 6px rgba(0,0,0,.4);
+  pointer-events: none;
+}
+
 /* profile + content */
 .header-content {
   position: relative;
@@ -190,85 +263,6 @@ header {
   clip-path: none;
   filter: grayscale(10%) contrast(1.05);
 }
-
-.theme-switch-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-.switch-text {
-  font-family: var(--ff-mono);
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-}
-.theme-switch {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-.theme-switch input { display: none; }
-.switch-track {
-  width: 44px; height: 22px;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 11px;
-  position: relative;
-  transition: background .3s, border-color .3s;
-  display: flex;
-  align-items: center;
-}
-.switch-label-d, .switch-label-l {
-  position: absolute;
-  font-family: var(--ff-mono);
-  font-size: 9px;
-  font-weight: 500;
-  color: var(--text-dim);
-  line-height: 1;
-  transition: opacity .3s;
-}
-.switch-label-d { left: 6px; }
-.switch-label-l { right: 6px; opacity: 0.4; }
-.switch-thumb {
-  position: absolute;
-  top: 3px; left: 3px;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--text-mid);
-  transition: transform .3s, background .3s;
-  z-index: 1;
-}
-.theme-switch input:checked + .switch-track {
-  background: var(--lime-pale);
-  border-color: var(--lime-dim);
-}
-.theme-switch input:checked + .switch-track .switch-thumb {
-  transform: translateX(22px);
-  background: var(--lime);
-}
-.theme-switch input:checked + .switch-track .switch-label-d { opacity: 0.4; }
-.theme-switch input:checked + .switch-track .switch-label-l { opacity: 1; color: var(--lime); }
-
-body.light {
-  --bg: #f4f4ef;
-  --bg2: #eaeae4;
-  --surface: #e2e2dc;
-  --surface2: #d8d8d2;
-  --border: rgba(0,0,0,0.08);
-  --border2: rgba(0,0,0,0.18);
-  --text: #1a1a1a;
-  --text-mid: #404040;
-  --text-dim: #808080;
-  --lime: #4a7800;
-  --lime-dim: #3d6400;
-  --lime-pale: rgba(74,120,0,0.08);
-  --lime-glow: rgba(74,120,0,0.18);
-  --blue: #1255b8;
-  --blue-dim: rgba(18,85,184,0.1);
-}
-body.light .profile-frame::after { background: var(--bg); }
 
 .profile-tags { display: flex; flex-direction: column; gap: 6px; width: 210px; }
 .ptag {
@@ -817,6 +811,7 @@ footer span { color: var(--lime); }
   .edu-item { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   h1 { letter-spacing: -2px; }
+  .theme-toggle-wrap { top: 56px; right: 20px; }
 }
 </style>
 </head>
@@ -830,18 +825,17 @@ footer span { color: var(--lime); }
   <div class="header-topbar">
     <div class="topbar-logo">ACB_</div>
     <div class="topbar-status">Available for work</div>
-    <div class="theme-switch-wrap">
-      <label class="theme-switch" title="Switch theme">
-        <input type="checkbox" id="themeCheck" onchange="toggleTheme(this)">
-        <span class="switch-track">
-          <span class="switch-label-d">D</span>
-          <span class="switch-label-l">L</span>
-          <span class="switch-thumb"></span>
-        </span>
-      </label>
-      <span class="switch-text">Theme</span>
-    </div>
   </div>
+
+  <!-- Theme Toggle: absolute top-right, matching lighttheme.html placement -->
+  <a href="https://aditya-baraik.github.io/-/lighttheme" target="_self" class="theme-toggle-wrap" title="Switch Theme">
+    <div class="theme-toggle-track">
+      <span class="toggle-letter d">D</span>
+      <div class="theme-toggle-thumb"></div>
+      <span class="toggle-letter l">L</span>
+    </div>
+    <span class="theme-toggle-label">Themes</span>
+  </a>
  
   <div class="header-content">
     <div class="profile-col fade-in">
@@ -1083,13 +1077,6 @@ footer span { color: var(--lime); }
 </footer>
  
 <script>
-
-function toggleTheme(checkbox) {
-  if (checkbox.checked) {
-    window.location.href = 'https://aditya-baraik.github.io/-/lighttheme';
-  }
-}
-
 const faders = document.querySelectorAll('.fade-in');
 const io = new IntersectionObserver((entries, obs) => {
   entries.forEach(e => {
