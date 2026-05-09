@@ -98,6 +98,76 @@ header::after  { bottom: 28px; right: 28px; border-left: none; border-top: none;
   pointer-events: none;
 }
 
+/* ── THEME TOGGLE ────────────────────────── */
+.theme-toggle-wrap {
+  position: absolute;
+  top: 36px;
+  right: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  z-index: 10;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.theme-toggle-label {
+  font-family: var(--ff-body);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  user-select: none;
+}
+
+.theme-toggle-track {
+  width: 54px;
+  height: 28px;
+  border-radius: 14px;
+  background: var(--paper-deep);
+  border: 1px solid var(--gold-pale);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  box-shadow: inset 0 1px 3px rgba(26,26,34,.12);
+  transition: background .3s, border-color .3s;
+}
+
+.theme-toggle-track:hover {
+  border-color: var(--gold);
+}
+
+.toggle-letter {
+  font-family: var(--ff-body);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+  transition: color .3s;
+}
+
+.toggle-letter.l { color: var(--teal); }
+.toggle-letter.d { color: var(--ink-light); }
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 2px 6px rgba(184,146,74,.45);
+  transition: transform .3s cubic-bezier(.4,0,.2,1), background .3s;
+  pointer-events: none;
+}
+
+/* ── end theme toggle ── */
+
 /* Profile image */
 .profile-wrap {
   position: relative;
@@ -609,6 +679,7 @@ footer {
   header::before, header::after { width: 80px; height: 80px; }
   .edu-item { padding: 24px 20px; }
   .exp-card, .skill-card { padding: 28px 24px; }
+  .theme-toggle-wrap { top: 20px; right: 20px; }
 }
 </style>
 </head>
@@ -617,6 +688,16 @@ footer {
 <!-- ── HEADER ───────────────────────────── -->
 <header>
   <div class="header-ornament"></div>
+
+  <!-- Theme Toggle -->
+  <a href="https://aditya-baraik.github.io/-/" target="_self" class="theme-toggle-wrap" title="Switch Theme">
+    <div class="theme-toggle-track">
+      <span class="toggle-letter l">L</span>
+      <div class="theme-toggle-thumb"></div>
+      <span class="toggle-letter d">D</span>
+    </div>
+    <span class="theme-toggle-label">Themes</span>
+  </a>
 
   <div class="profile-wrap fade-in">
     <img src="pp.png" alt="Profile Photo" class="profile-img">
@@ -866,28 +947,22 @@ document.getElementById('email-link').addEventListener('click', function(e) {
   const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
   if (isAndroid || isIOS) {
-    // Try native mailto first — on mobile this opens the default mail app
-    // (Gmail if set as default). A short timeout fallback opens Gmail web.
     const mailtoLink = 'mailto:' + email;
     const gmailAppAndroid = 'googlegmail://co?to=' + email;
     const gmailWeb = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + email;
 
     if (isAndroid) {
-      // Try Gmail app intent; if not installed the browser ignores it
       const start = Date.now();
       window.location = gmailAppAndroid;
       setTimeout(function() {
-        // If we're still here after ~600ms, Gmail app didn't open — fall back to web
         if (Date.now() - start < 1500) {
           window.open(gmailWeb, '_blank');
         }
       }, 600);
     } else {
-      // iOS: mailto opens default mail app (Gmail if set as default)
       window.location = mailtoLink;
     }
   } else {
-    // Desktop: open Gmail web in new tab
     window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + email, '_blank');
   }
 });
