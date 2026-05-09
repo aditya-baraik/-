@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Cheek Baraik | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ── RESET & BASE ─────────────────────────── */
+*, *::before, *::after {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ink:       #1a1a22;
+  --ink-mid:   #3d3d4a;
+  --ink-light: #6b6b7b;
+  --paper:     #f5f2ec;
+  --paper-deep:#ede9e0;
+  --cream:     #faf8f4;
+  --teal:      #0f766e;
+  --teal-dim:  #0d5f58;
+  --navy:      #1e3a8a;
+  --navy-dim:  #162e70;
+  --gold:      #b8924a;
+  --gold-pale: #e8d5b0;
+  --rule:      rgba(26,26,34,0.1);
+
+  --ff-head:  'Playfair Display', Georgia, serif;
+  --ff-body:  'Jost', sans-serif;
+  --ff-serif: 'EB Garamond', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN OVERLAY ───────────────────────── */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .45;
+}
+
+/* ── SCROLLBAR ───────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 4px; }
+
+/* ══════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════ */
+header {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 24px 60px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+/* Decorative corner rules */
+header::before,
+header::after {
+  content: "";
+  position: absolute;
+  width: 220px; height: 220px;
+  border: 1.5px solid var(--rule);
+  pointer-events: none;
+}
+header::before { top: 28px; left: 28px; border-right: none; border-bottom: none; }
+header::after  { bottom: 28px; right: 28px; border-left: none; border-top: none; }
+
+.header-ornament {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 580px; height: 580px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(15,118,110,.055) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Profile image */
+.profile-wrap {
+  position: relative;
+  margin-bottom: 36px;
+}
+.profile-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-pale);
+}
+.profile-img {
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 3px solid var(--gold);
+  filter: drop-shadow(0 12px 32px rgba(26,26,34,.14));
+}
+
+/* Name & title */
+.header-eyebrow {
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(38px, 6vw, 66px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+h2.subtitle {
+  font-family: var(--ff-serif);
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--navy);
+  margin-bottom: 22px;
+}
+
+.tagline {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ink-light);
+  max-width: 460px;
+  letter-spacing: .3px;
+}
+
+/* Divider rule */
+.header-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 30px auto 0;
+  width: 260px;
+}
+.header-rule span {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-pale), transparent);
+}
+.header-rule i {
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 6px;
+}
+
+/* scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  opacity: .6;
+  animation: bob 2.4s ease-in-out infinite;
+}
+.scroll-cue::after {
+  content: "";
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--ink-light), transparent);
+}
+@keyframes bob {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,242,236,.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
+}
+
+.top-nav a {
+  font-family: var(--ff-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  text-decoration: none;
+  padding: 18px 28px;
+  position: relative;
+  transition: color .3s;
+}
+.top-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background: var(--teal);
+  transform: translateX(-50%);
+  transition: width .35s cubic-bezier(.4,0,.2,1);
+}
+.top-nav a:hover { color: var(--teal); }
+.top-nav a:hover::after { width: 70%; }
+
+/* ══════════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════════ */
+section {
+  padding: 100px 10%;
+  position: relative;
+}
+
+section:nth-child(even) {
+  background: var(--paper);
+}
+section:nth-child(odd) {
+  background: var(--cream);
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.15;
+  letter-spacing: -.5px;
+}
+
+.section-rule {
+  width: 48px; height: 2px;
+  background: var(--gold);
+  margin-bottom: 48px;
+}
+
+/* ══════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════ */
+#about .about-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 64px;
+  max-width: 940px;
+}
+#about p {
+  font-size: 16.5px;
+  font-weight: 300;
+  color: var(--ink-mid);
+  line-height: 1.85;
+}
+/* First paragraph larger pull-quote style */
+#about .about-body p:first-child {
+  font-family: var(--ff-serif);
+  font-size: 20px;
+  line-height: 1.75;
+  color: var(--ink);
+  grid-column: 1 / -1;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ══════════════════════════════════════════
+   SKILLS
+══════════════════════════════════════════ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.skill-card {
+  background: var(--cream);
+  border: 1px solid rgba(26,26,34,.07);
+  border-radius: 4px;
+  padding: 36px 34px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow .3s, transform .3s;
+}
+section:nth-child(even) .skill-card { background: var(--cream); }
+
+.skill-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, var(--teal), var(--navy));
+  opacity: 0;
+  transition: opacity .3s;
+}
+.skill-card:hover {
+  box-shadow: 0 16px 48px rgba(26,26,34,.09);
+  transform: translateY(-4px);
+}
+.skill-card:hover::before { opacity: 1; }
+
+.skill-card h4 {
+  font-family: var(--ff-head);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.skill-card ul { padding: 0; list-style: none; }
+.skill-card ul li {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--ink-mid);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.skill-card ul li::before {
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+.skill-card ul li:last-child { border-bottom: none; }
+
+/* ══════════════════════════════════════════
+   EXPERIENCE
+══════════════════════════════════════════ */
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.exp-card {
+  background: var(--paper);
+  border: 1px solid rgba(26,26,34,.07);
+  border-radius: 4px;
+  padding: 36px 34px;
+  transition: box-shadow .3s, transform .3s;
+  position: relative;
+}
+section:nth-child(even) .exp-card { background: var(--cream); }
+
+.exp-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 34px; right: 34px;
+  height: 2px;
+  background: linear-gradient(to right, var(--teal), var(--navy));
+  opacity: 0;
+  transition: opacity .35s;
+}
+.exp-card:hover {
+  box-shadow: 0 20px 56px rgba(26,26,34,.1);
+  transform: translateY(-5px);
+}
+.exp-card:hover::after { opacity: 1; }
+
+.exp-card h4 {
+  font-family: var(--ff-head);
+  font-size: 18.5px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.exp-meta {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  color: var(--teal);
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.exp-card ul { padding: 0; list-style: none; }
+.exp-card ul li {
+  font-size: 14.5px;
+  font-weight: 300;
+  color: var(--ink-mid);
+  padding: 7px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.exp-card ul li::before {
+  content: "—";
+  color: var(--gold);
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* ══════════════════════════════════════════
+   EDUCATION
+══════════════════════════════════════════ */
+.edu-container {
+  border: 1px solid rgba(26,26,34,.08);
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 800px;
+}
+
+.edu-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 16px;
+  padding: 32px 40px;
+  border-bottom: 1px solid var(--rule);
+  transition: background .25s;
+}
+.edu-item:last-child { border-bottom: none; }
+.edu-item:hover { background: rgba(15,118,110,.035); }
+
+.edu-item h5 {
+  font-family: var(--ff-head);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 5px;
+}
+.edu-item .edu-school {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--ink-mid);
+}
+.edu-badge {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--teal);
+  background: rgba(15,118,110,.08);
+  padding: 5px 14px;
+  border-radius: 2px;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
+#contact {
+  padding-bottom: 80px;
+}
+
+.contact-intro {
+  font-family: var(--ff-serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ink-mid);
+  max-width: 520px;
+  margin-bottom: 56px;
+  line-height: 1.8;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 760px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  border: 1px solid rgba(26,26,34,.08);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background .25s, box-shadow .3s, transform .3s;
+  background: var(--paper);
+}
+section:nth-child(even) .contact-item { background: var(--paper-deep); }
+
+.contact-item:hover {
+  background: var(--paper-deep);
+  box-shadow: 0 12px 36px rgba(26,26,34,.08);
+  transform: translateY(-3px);
+}
+.contact-item:hover .ci-icon { background: var(--teal); color: #fff; }
+
+.ci-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(15,118,110,.09);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: background .3s, color .3s;
+}
+
+.contact-text strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+.contact-text span {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-light);
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  color: rgba(245,242,236,.45);
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 12.5px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .85s cubic-bezier(.4,0,.2,1),
+              transform .85s cubic-bezier(.4,0,.2,1);
+}
+.fade-in.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  #about .about-body { grid-template-columns: 1fr; }
+  .contact-grid      { grid-template-columns: 1fr; }
+  .edu-item          { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  section { padding: 72px 6%; }
+  .skills-grid, .exp-grid { grid-template-columns: 1fr; }
+  .top-nav a { padding: 14px 16px; font-size: 10px; letter-spacing: 1.5px; }
+  h1 { letter-spacing: -1px; }
+  header::before, header::after { width: 80px; height: 80px; }
+  .edu-item { padding: 24px 20px; }
+  .exp-card, .skill-card { padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ───────────────────────────── -->
+<header>
+  <div class="header-ornament"></div>
+
+  <div class="profile-wrap fade-in">
+    <img src="pp.png" alt="Profile Photo" class="profile-img">
+  </div>
+
+  <h1 class="fade-in">Aditya Cheek Baraik</h1>
+  <h2 class="subtitle fade-in">Creative Technologist &amp; Visual Designer</h2>
+  <p class="tagline fade-in">Designing visuals, crafting stories, and building creative digital experiences.</p>
+
+  <div class="header-rule fade-in">
+    <span></span>
+    <i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i>
+    <span></span>
+  </div>
+
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<!-- ── NAV ──────────────────────────────── -->
+<nav class="top-nav">
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- ── ABOUT ────────────────────────────── -->
+<section id="about" class="fade-in">
+  <span class="section-label">Introduction</span>
+  <h3 class="section-title">About Me</h3>
+  <div class="section-rule"></div>
+
+  <div class="about-body">
+    <p>Computer Instructor and English Honours student with a strong interest in creative technology, visual storytelling, and digital experimentation. My work lies at the intersection of design, photography, writing, and emerging AI tools—where I explore different ways of transforming ideas into visual and digital experiences.</p>
+
+    <p>Over the years, I have developed hands-on experience in graphic design, poster and magazine-style layouts, photography, and photo editing, using tools such as Canva, Adobe Photoshop, and Adobe Lightroom. I also experiment with AI-powered creative tools, including AI image generation and generative fill, to explore new possibilities in digital art and visual content.</p>
+
+    <p>Alongside creative work, I enjoy exploring the technical side of digital systems. I work with HTML, CSS, and Python, and build small electronics and DIY technology projects using Arduino and Raspberry Pi, combining creativity with practical technology.</p>
+
+    <p>As a Computer Instructor and Technical Assistant, I have trained 60+ students in basic computing and MS Office, while developing strong communication, troubleshooting, and problem-solving skills.</p>
+
+    <p>Beyond technology and design, I enjoy writing poetry and short stories, often exploring themes of life and human emotions, which further strengthens my passion for storytelling and creative expression.</p>
+
+    <p>Currently, I am focused on expanding my work in AI-assisted creativity, visual design, and technology-driven creative projects, while continuously learning and experimenting at the intersection of design, storytelling, and digital innovation.</p>
+  </div>
+</section>
+
+<!-- ── SKILLS ────────────────────────────── -->
+<section id="skills" class="fade-in">
+  <span class="section-label">Capabilities</span>
+  <h3 class="section-title">Technical &amp; Creative Skills</h3>
+  <div class="section-rule"></div>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h4>Web &amp; Programming</h4>
+      <ul>
+        <li>HTML (Static Website Development)</li>
+        <li>CSS (Basic Styling)</li>
+        <li>Python (Fundamentals)</li>
+        <li>Visual Basics</li>
+        <li>GitHub (Static Deployment)</li>
+      </ul>
+    </div>
+
+    <div class="skill-card">
+      <h4>Creative &amp; Tools</h4>
+      <ul>
+        <li>Canva (Advanced Control)</li>
+        <li>Adobe Lightroom</li>
+        <li>MS Office (Intermediate)</li>
+        <li>Visual Content Design</li>
+        <li>Content Writing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ────────────────────────── -->
+<section id="experience" class="fade-in">
+  <span class="section-label">Professional Journey</span>
+  <h3 class="section-title">Work Experience</h3>
+  <div class="section-rule"></div>
+
+  <div class="exp-grid">
+    <div class="exp-card">
+      <h4>Computer Trainer &amp; Technical Coordinator</h4>
+      <p class="exp-meta">BIRSA — JSDMS &nbsp;·&nbsp; Aug 2025 – Present</p>
+      <ul>
+        <li>Trained 60+ students in Basic Computer &amp; MS Office</li>
+        <li>Managed lab setup &amp; documentation</li>
+        <li>Handled technical troubleshooting</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <h4>Technical Assistant – Gas Office</h4>
+      <p class="exp-meta">Data Entry &amp; Portal Management</p>
+      <ul>
+        <li>Uploaded user booking data on portal</li>
+        <li>Maintained digital records</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <h4>Media Assistant – Local Media</h4>
+      <p class="exp-meta">Photography &amp; Post-Production</p>
+      <ul>
+        <li>Shot &amp; edited local event content</li>
+        <li>Managed basic post-production</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ─────────────────────────── -->
+<section id="education" class="fade-in">
+  <span class="section-label">Academic Background</span>
+  <h3 class="section-title">Education</h3>
+  <div class="section-rule"></div>
+
+  <div class="edu-container">
+    <div class="edu-item">
+      <div>
+        <h5>Matriculation</h5>
+        <p class="edu-school">Notre Dame School, Gumla</p>
+      </div>
+      <div>
+        <div class="edu-badge">2020 · 64.6%</div>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <h5>Intermediate</h5>
+        <p class="edu-school">Notre Dame School, Gumla</p>
+      </div>
+      <div>
+        <div class="edu-badge">2022 · 64.6%</div>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <h5>Bachelor of Arts — English (Honours)</h5>
+        <p class="edu-school">Kartik Oraon College, Gumla</p>
+      </div>
+      <div>
+        <div class="edu-badge">Expected Jun/Jul 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────── -->
+<section id="contact" class="fade-in">
+  <span class="section-label">Get In Touch</span>
+  <h3 class="section-title">Connect With Me</h3>
+  <div class="section-rule"></div>
+
+  <p class="contact-intro">Whether it's a creative collaboration, a technical project, or simply a conversation about design and storytelling — I'd love to hear from you.</p>
+
+  <div class="contact-grid">
+    <a href="https://www.linkedin.com/in/aditya-cheek-baraik" target="_blank" rel="noopener noreferrer" class="contact-item">
+      <div class="ci-icon"><i class="fab fa-linkedin-in"></i></div>
+      <div class="contact-text">
+        <strong>LinkedIn</strong>
+        <span>Professional profile &amp; career updates</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/aditya-baraik" target="_blank" rel="noopener noreferrer" class="contact-item">
+      <div class="ci-icon"><i class="fab fa-github"></i></div>
+      <div class="contact-text">
+        <strong>GitHub</strong>
+        <span>Code repositories &amp; web projects</span>
+      </div>
+    </a>
+
+    <a href="https://www.instagram.com/_random._.0ne_?igsh=MXRhcjl4eXh0OGF1bw==" target="_blank" rel="noopener noreferrer" class="contact-item">
+      <div class="ci-icon"><i class="fab fa-instagram"></i></div>
+      <div class="contact-text">
+        <strong>Instagram</strong>
+        <span>Photography &amp; visual storytelling</span>
+      </div>
+    </a>
+
+    <a href="mailto:aditya.c.baraik@gmail.com" id="email-link" class="contact-item">
+      <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+      <div class="contact-text">
+        <strong>Email</strong>
+        <span>Direct collaboration &amp; inquiries</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────── -->
+<footer>
+  &copy; 2026 &nbsp;·&nbsp; Aditya Cheek Baraik &nbsp;·&nbsp; All Rights Reserved
+</footer>
+
+<script>
+/* Scroll-triggered fade-ins */
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('active');
+    obs.unobserve(entry.target);
+  });
+}, { threshold: 0.12 });
+
+faders.forEach(el => observer.observe(el));
+
+/* Stagger header fades */
+document.querySelectorAll('header .fade-in').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.14) + 's';
+  setTimeout(() => el.classList.add('active'), 80 + i * 140);
+});
+
+/* Nav active state on scroll */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.top-nav a');
+
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + id
+          ? 'var(--teal)' : '';
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -50% 0px' });
+
+sections.forEach(s => navObserver.observe(s));
+
+/* Email: open in Gmail app if on Android/iOS, else open Gmail in browser */
+document.getElementById('email-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  const email = 'aditya.c.baraik@gmail.com';
+  const ua = navigator.userAgent || '';
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  if (isAndroid || isIOS) {
+    // Try native mailto first — on mobile this opens the default mail app
+    // (Gmail if set as default). A short timeout fallback opens Gmail web.
+    const mailtoLink = 'mailto:' + email;
+    const gmailAppAndroid = 'googlegmail://co?to=' + email;
+    const gmailWeb = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + email;
+
+    if (isAndroid) {
+      // Try Gmail app intent; if not installed the browser ignores it
+      const start = Date.now();
+      window.location = gmailAppAndroid;
+      setTimeout(function() {
+        // If we're still here after ~600ms, Gmail app didn't open — fall back to web
+        if (Date.now() - start < 1500) {
+          window.open(gmailWeb, '_blank');
+        }
+      }, 600);
+    } else {
+      // iOS: mailto opens default mail app (Gmail if set as default)
+      window.location = mailtoLink;
+    }
+  } else {
+    // Desktop: open Gmail web in new tab
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + email, '_blank');
+  }
+});
+</script>
+</body>
+</html>
