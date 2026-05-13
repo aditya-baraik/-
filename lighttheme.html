@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aditya Cheek Baraik | Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+ 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&family=Azeret+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+ 
 <style>
 /* ── RESET & BASE ─────────────────────────── */
 *, *::before, *::after {
   margin: 0; padding: 0;
   box-sizing: border-box;
 }
-
+ 
 :root {
   --ink:       #1a1a22;
   --ink-mid:   #3d3d4a;
@@ -29,14 +29,15 @@
   --gold:      #b8924a;
   --gold-pale: #e8d5b0;
   --rule:      rgba(26,26,34,0.1);
-
+ 
   --ff-head:  'Playfair Display', Georgia, serif;
   --ff-body:  'Jost', sans-serif;
   --ff-serif: 'EB Garamond', Georgia, serif;
+  --ff-mono:  'Azeret Mono', monospace;
 }
-
+ 
 html { scroll-behavior: smooth; }
-
+ 
 body {
   font-family: var(--ff-body);
   background: var(--cream);
@@ -44,7 +45,7 @@ body {
   line-height: 1.75;
   overflow-x: hidden;
 }
-
+ 
 /* ── GRAIN OVERLAY ───────────────────────── */
 body::before {
   content: "";
@@ -54,12 +55,12 @@ body::before {
   z-index: 9999;
   opacity: .45;
 }
-
+ 
 /* ── SCROLLBAR ───────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--paper); }
 ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 4px; }
-
+ 
 /* ══════════════════════════════════════════
    HEADER
 ══════════════════════════════════════════ */
@@ -75,8 +76,7 @@ header {
   background: var(--paper);
   overflow: hidden;
 }
-
-/* Decorative corner rules */
+ 
 header::before,
 header::after {
   content: "";
@@ -87,7 +87,7 @@ header::after {
 }
 header::before { top: 28px; left: 28px; border-right: none; border-bottom: none; }
 header::after  { bottom: 28px; right: 28px; border-left: none; border-top: none; }
-
+ 
 .header-ornament {
   position: absolute;
   top: 50%; left: 50%;
@@ -97,11 +97,11 @@ header::after  { bottom: 28px; right: 28px; border-left: none; border-top: none;
   background: radial-gradient(circle, rgba(15,118,110,.055) 0%, transparent 70%);
   pointer-events: none;
 }
-
+ 
 /* ── THEME TOGGLE ────────────────────────── */
 .theme-toggle-wrap {
   position: absolute;
-  top: 36px;
+  top: 68px;
   right: 44px;
   display: flex;
   flex-direction: column;
@@ -111,48 +111,46 @@ header::after  { bottom: 28px; right: 28px; border-left: none; border-top: none;
   cursor: pointer;
   text-decoration: none;
 }
-
+ 
 .theme-toggle-label {
-  font-family: var(--ff-body);
+  font-family: var(--ff-mono);
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--ink-light);
+  color: #4a5270;
   user-select: none;
 }
-
+ 
 .theme-toggle-track {
   width: 54px;
   height: 28px;
   border-radius: 14px;
-  background: var(--paper-deep);
-  border: 1px solid var(--gold-pale);
+  background: #171c2e;
+  border: 1px solid rgba(255,255,255,0.1);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 7px;
-  box-shadow: inset 0 1px 3px rgba(26,26,34,.12);
   transition: background .3s, border-color .3s;
 }
-
+ 
 .theme-toggle-track:hover {
-  border-color: var(--gold);
+  border-color: rgba(255,255,255,0.2);
 }
-
+ 
 .toggle-letter {
-  font-family: var(--ff-body);
+  font-family: var(--ff-mono);
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
   user-select: none;
-  transition: color .3s;
 }
-
-.toggle-letter.l { color: var(--teal); }
-.toggle-letter.d { color: var(--ink-light); }
-
+ 
+.toggle-letter.l { color: var(--gold); }
+.toggle-letter.d { color: #4a5270; }
+ 
 .theme-toggle-thumb {
   position: absolute;
   top: 3px;
@@ -160,15 +158,13 @@ header::after  { bottom: 28px; right: 28px; border-left: none; border-top: none;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 2px 6px rgba(184,146,74,.45);
-  transition: transform .3s cubic-bezier(.4,0,.2,1), background .3s;
+  background: #8892b0;
+  box-shadow: 0 2px 6px rgba(0,0,0,.4);
   pointer-events: none;
 }
-
+ 
 /* ── end theme toggle ── */
-
-/* Profile image */
+ 
 .profile-wrap {
   position: relative;
   margin-bottom: 36px;
@@ -188,8 +184,7 @@ header::after  { bottom: 28px; right: 28px; border-left: none; border-top: none;
   border: 3px solid var(--gold);
   filter: drop-shadow(0 12px 32px rgba(26,26,34,.14));
 }
-
-/* Name & title */
+ 
 .header-eyebrow {
   font-family: var(--ff-body);
   font-size: 11px;
@@ -199,7 +194,7 @@ header::after  { bottom: 28px; right: 28px; border-left: none; border-top: none;
   color: var(--gold);
   margin-bottom: 14px;
 }
-
+ 
 h1 {
   font-family: var(--ff-head);
   font-size: clamp(38px, 6vw, 66px);
@@ -209,7 +204,7 @@ h1 {
   color: var(--ink);
   margin-bottom: 16px;
 }
-
+ 
 h2.subtitle {
   font-family: var(--ff-serif);
   font-size: clamp(17px, 2.2vw, 22px);
@@ -218,7 +213,7 @@ h2.subtitle {
   color: var(--navy);
   margin-bottom: 22px;
 }
-
+ 
 .tagline {
   font-size: 15px;
   font-weight: 300;
@@ -226,8 +221,7 @@ h2.subtitle {
   max-width: 460px;
   letter-spacing: .3px;
 }
-
-/* Divider rule */
+ 
 .header-rule {
   display: flex;
   align-items: center;
@@ -245,8 +239,7 @@ h2.subtitle {
   color: var(--gold);
   letter-spacing: 6px;
 }
-
-/* scroll cue */
+ 
 .scroll-cue {
   position: absolute;
   bottom: 32px;
@@ -272,7 +265,7 @@ h2.subtitle {
   0%,100% { transform: translateX(-50%) translateY(0); }
   50%      { transform: translateX(-50%) translateY(6px); }
 }
-
+ 
 /* ══════════════════════════════════════════
    NAV
 ══════════════════════════════════════════ */
@@ -290,7 +283,7 @@ h2.subtitle {
   border-bottom: 1px solid var(--rule);
   border-top: 1px solid var(--rule);
 }
-
+ 
 .top-nav a {
   font-family: var(--ff-body);
   font-size: 11.5px;
@@ -314,7 +307,7 @@ h2.subtitle {
 }
 .top-nav a:hover { color: var(--teal); }
 .top-nav a:hover::after { width: 70%; }
-
+ 
 /* ══════════════════════════════════════════
    SECTIONS
 ══════════════════════════════════════════ */
@@ -322,14 +315,10 @@ section {
   padding: 100px 10%;
   position: relative;
 }
-
-section:nth-child(even) {
-  background: var(--paper);
-}
-section:nth-child(odd) {
-  background: var(--cream);
-}
-
+ 
+section:nth-child(even) { background: var(--paper); }
+section:nth-child(odd)  { background: var(--cream); }
+ 
 .section-label {
   font-size: 10px;
   font-weight: 600;
@@ -339,7 +328,7 @@ section:nth-child(odd) {
   margin-bottom: 10px;
   display: block;
 }
-
+ 
 .section-title {
   font-family: var(--ff-head);
   font-size: clamp(28px, 3.5vw, 40px);
@@ -349,13 +338,13 @@ section:nth-child(odd) {
   line-height: 1.15;
   letter-spacing: -.5px;
 }
-
+ 
 .section-rule {
   width: 48px; height: 2px;
   background: var(--gold);
   margin-bottom: 48px;
 }
-
+ 
 /* ══════════════════════════════════════════
    ABOUT
 ══════════════════════════════════════════ */
@@ -371,7 +360,6 @@ section:nth-child(odd) {
   color: var(--ink-mid);
   line-height: 1.85;
 }
-/* First paragraph larger pull-quote style */
 #about .about-body p:first-child {
   font-family: var(--ff-serif);
   font-size: 20px;
@@ -381,7 +369,7 @@ section:nth-child(odd) {
   padding-bottom: 32px;
   border-bottom: 1px solid var(--rule);
 }
-
+ 
 /* ══════════════════════════════════════════
    SKILLS
 ══════════════════════════════════════════ */
@@ -390,7 +378,7 @@ section:nth-child(odd) {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 28px;
 }
-
+ 
 .skill-card {
   background: var(--cream);
   border: 1px solid rgba(26,26,34,.07);
@@ -401,7 +389,7 @@ section:nth-child(odd) {
   transition: box-shadow .3s, transform .3s;
 }
 section:nth-child(even) .skill-card { background: var(--cream); }
-
+ 
 .skill-card::before {
   content: "";
   position: absolute;
@@ -411,12 +399,9 @@ section:nth-child(even) .skill-card { background: var(--cream); }
   opacity: 0;
   transition: opacity .3s;
 }
-.skill-card:hover {
-  box-shadow: 0 16px 48px rgba(26,26,34,.09);
-  transform: translateY(-4px);
-}
+.skill-card:hover { box-shadow: 0 16px 48px rgba(26,26,34,.09); transform: translateY(-4px); }
 .skill-card:hover::before { opacity: 1; }
-
+ 
 .skill-card h4 {
   font-family: var(--ff-head);
   font-size: 19px;
@@ -426,7 +411,7 @@ section:nth-child(even) .skill-card { background: var(--cream); }
   padding-bottom: 14px;
   border-bottom: 1px solid var(--rule);
 }
-
+ 
 .skill-card ul { padding: 0; list-style: none; }
 .skill-card ul li {
   font-size: 14.5px;
@@ -446,7 +431,316 @@ section:nth-child(even) .skill-card { background: var(--cream); }
   flex-shrink: 0;
 }
 .skill-card ul li:last-child { border-bottom: none; }
-
+ 
+/* ══════════════════════════════════════════
+   PROJECTS
+══════════════════════════════════════════ */
+.projects-intro {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ink-light);
+  font-family: var(--ff-mono);
+  letter-spacing: 1px;
+  margin-bottom: 48px;
+}
+ 
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+ 
+.proj-card {
+  background: var(--paper);
+  border: 1px solid rgba(26,26,34,.08);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .35s, transform .35s;
+}
+section:nth-child(even) .proj-card { background: var(--cream); }
+.proj-card:hover { box-shadow: 0 20px 56px rgba(26,26,34,.1); transform: translateY(-5px); }
+ 
+.proj-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--teal), var(--navy));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.4,0,.2,1);
+}
+.proj-card:hover::before { transform: scaleX(1); }
+ 
+.proj-card-inner {
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 280px;
+}
+ 
+.proj-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--ink-light);
+  margin-bottom: 18px;
+}
+.proj-status-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 5px rgba(15,118,110,.5);
+  animation: blink 2.5s ease-in-out infinite;
+}
+.proj-status-dot.static { background: var(--navy); box-shadow: none; animation: none; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+ 
+.proj-num {
+  font-family: var(--ff-head);
+  font-size: 72px;
+  font-weight: 700;
+  font-style: italic;
+  color: rgba(26,26,34,.04);
+  line-height: 1;
+  position: absolute;
+  top: 16px; right: 24px;
+  pointer-events: none;
+  user-select: none;
+}
+ 
+.proj-type {
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  opacity: .8;
+  margin-bottom: 14px;
+}
+ 
+.proj-card h3 {
+  font-family: var(--ff-head);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -.3px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+.proj-card h3 em { font-style: italic; color: var(--teal); }
+ 
+.proj-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ink-mid);
+  line-height: 1.85;
+  flex: 1;
+  margin-bottom: 24px;
+}
+ 
+.proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.proj-tag {
+  font-family: var(--ff-mono);
+  font-size: 9.5px;
+  letter-spacing: 1px;
+  color: var(--ink-light);
+  background: rgba(26,26,34,.05);
+  border: 1px solid rgba(26,26,34,.1);
+  padding: 4px 10px;
+  border-radius: 2px;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.proj-card:hover .proj-tag {
+  color: var(--teal);
+  border-color: rgba(15,118,110,.25);
+  background: rgba(15,118,110,.06);
+}
+ 
+.proj-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.proj-link {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 9px 18px;
+  border-radius: 2px;
+  transition: all .25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.proj-link.primary { color: #fff; background: var(--teal); }
+.proj-link.primary:hover { background: var(--teal-dim); box-shadow: 0 6px 20px rgba(15,118,110,.25); }
+.proj-link.secondary { color: var(--ink-mid); border: 1px solid rgba(26,26,34,.15); }
+.proj-link.secondary:hover { color: var(--teal); border-color: var(--teal); }
+.proj-link i { font-size: 11px; }
+ 
+/* ══════════════════════════════════════════
+   PHOTOGRAPHY
+══════════════════════════════════════════ */
+.photo-intro {
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.photo-intro p {
+  font-family: var(--ff-serif);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink-mid);
+  line-height: 1.7;
+}
+ 
+/* ── SHOWCASE ROWS ── */
+.photo-showcase-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-bottom: 100px;
+}
+ 
+.showcase-frame-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+ 
+.showcase-frame { flex: 1; }
+ 
+.showcase-img-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-deep);
+  aspect-ratio: 4/3;
+  border: 1px solid rgba(26,26,34,.08);
+  border-radius: 2px;
+}
+ 
+.showcase-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .8s cubic-bezier(.4,0,.2,1), filter .6s;
+  filter: sepia(8%) contrast(1.03);
+}
+.showcase-img-wrap img:hover { transform: scale(1.04); filter: sepia(0%) contrast(1.05); }
+ 
+.showcase-placeholder {
+  width: 100%; height: 100%;
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--paper-deep);
+  color: var(--ink-light);
+  font-size: 28px;
+  opacity: .35;
+}
+ 
+/* Prev/Next buttons */
+.ext-btn {
+  width: 38px; height: 38px;
+  background: transparent;
+  border: 1px solid rgba(26,26,34,.15);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color .2s, background .2s;
+  color: var(--ink-mid);
+}
+.ext-btn:hover { border-color: var(--teal); background: rgba(15,118,110,.06); color: var(--teal); }
+ 
+/* Description panel */
+.showcase-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+ 
+.sd-title {
+  font-family: var(--ff-head);
+  font-size: clamp(30px, 3.5vw, 52px);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--navy);
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+ 
+.sd-divider {
+  height: 2px;
+  width: 40px;
+  background: var(--gold);
+  margin-bottom: 24px;
+}
+ 
+.sd-body {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ink-mid);
+  line-height: 1.95;
+  max-width: 420px;
+}
+ 
+/* Photo CTA */
+.photo-cta {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.photo-cta-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.photo-cta-text {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--ink-light);
+}
+.btn-ig {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 9px 18px;
+  border: 1px solid rgba(26,26,34,.15);
+  border-radius: 2px;
+  color: var(--ink-mid);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: color .25s, border-color .25s;
+}
+.btn-ig:hover { color: var(--teal); border-color: var(--teal); }
+ 
 /* ══════════════════════════════════════════
    EXPERIENCE
 ══════════════════════════════════════════ */
@@ -455,7 +749,7 @@ section:nth-child(even) .skill-card { background: var(--cream); }
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 28px;
 }
-
+ 
 .exp-card {
   background: var(--paper);
   border: 1px solid rgba(26,26,34,.07);
@@ -465,7 +759,7 @@ section:nth-child(even) .skill-card { background: var(--cream); }
   position: relative;
 }
 section:nth-child(even) .exp-card { background: var(--cream); }
-
+ 
 .exp-card::after {
   content: "";
   position: absolute;
@@ -475,12 +769,9 @@ section:nth-child(even) .exp-card { background: var(--cream); }
   opacity: 0;
   transition: opacity .35s;
 }
-.exp-card:hover {
-  box-shadow: 0 20px 56px rgba(26,26,34,.1);
-  transform: translateY(-5px);
-}
+.exp-card:hover { box-shadow: 0 20px 56px rgba(26,26,34,.1); transform: translateY(-5px); }
 .exp-card:hover::after { opacity: 1; }
-
+ 
 .exp-card h4 {
   font-family: var(--ff-head);
   font-size: 18.5px;
@@ -489,7 +780,7 @@ section:nth-child(even) .exp-card { background: var(--cream); }
   margin-bottom: 10px;
   line-height: 1.35;
 }
-
+ 
 .exp-meta {
   font-size: 13px;
   font-weight: 500;
@@ -499,7 +790,7 @@ section:nth-child(even) .exp-card { background: var(--cream); }
   padding-bottom: 16px;
   border-bottom: 1px solid var(--rule);
 }
-
+ 
 .exp-card ul { padding: 0; list-style: none; }
 .exp-card ul li {
   font-size: 14.5px;
@@ -517,7 +808,7 @@ section:nth-child(even) .exp-card { background: var(--cream); }
   font-size: 12px;
   line-height: 1.9;
 }
-
+ 
 /* ══════════════════════════════════════════
    EDUCATION
 ══════════════════════════════════════════ */
@@ -527,7 +818,7 @@ section:nth-child(even) .exp-card { background: var(--cream); }
   overflow: hidden;
   max-width: 800px;
 }
-
+ 
 .edu-item {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -539,7 +830,7 @@ section:nth-child(even) .exp-card { background: var(--cream); }
 }
 .edu-item:last-child { border-bottom: none; }
 .edu-item:hover { background: rgba(15,118,110,.035); }
-
+ 
 .edu-item h5 {
   font-family: var(--ff-head);
   font-size: 20px;
@@ -563,14 +854,12 @@ section:nth-child(even) .exp-card { background: var(--cream); }
   white-space: nowrap;
   margin-top: 4px;
 }
-
+ 
 /* ══════════════════════════════════════════
    CONTACT
 ══════════════════════════════════════════ */
-#contact {
-  padding-bottom: 80px;
-}
-
+#contact { padding-bottom: 80px; }
+ 
 .contact-intro {
   font-family: var(--ff-serif);
   font-size: 18px;
@@ -580,14 +869,14 @@ section:nth-child(even) .exp-card { background: var(--cream); }
   margin-bottom: 56px;
   line-height: 1.8;
 }
-
+ 
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   max-width: 760px;
 }
-
+ 
 .contact-item {
   display: flex;
   align-items: center;
@@ -600,14 +889,14 @@ section:nth-child(even) .exp-card { background: var(--cream); }
   background: var(--paper);
 }
 section:nth-child(even) .contact-item { background: var(--paper-deep); }
-
+ 
 .contact-item:hover {
   background: var(--paper-deep);
   box-shadow: 0 12px 36px rgba(26,26,34,.08);
   transform: translateY(-3px);
 }
 .contact-item:hover .ci-icon { background: var(--teal); color: #fff; }
-
+ 
 .ci-icon {
   width: 44px; height: 44px;
   border-radius: 50%;
@@ -620,7 +909,7 @@ section:nth-child(even) .contact-item { background: var(--paper-deep); }
   flex-shrink: 0;
   transition: background .3s, color .3s;
 }
-
+ 
 .contact-text strong {
   display: block;
   font-size: 15px;
@@ -633,7 +922,7 @@ section:nth-child(even) .contact-item { background: var(--paper-deep); }
   font-weight: 300;
   color: var(--ink-light);
 }
-
+ 
 /* ══════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════ */
@@ -647,7 +936,7 @@ footer {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-
+ 
 /* ══════════════════════════════════════════
    ANIMATIONS
 ══════════════════════════════════════════ */
@@ -657,20 +946,21 @@ footer {
   transition: opacity .85s cubic-bezier(.4,0,.2,1),
               transform .85s cubic-bezier(.4,0,.2,1);
 }
-.fade-in.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.fade-in.active { opacity: 1; transform: translateY(0); }
+ 
 /* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 900px) {
-  #about .about-body { grid-template-columns: 1fr; }
-  .contact-grid      { grid-template-columns: 1fr; }
-  .edu-item          { grid-template-columns: 1fr; }
+  #about .about-body  { grid-template-columns: 1fr; }
+  .contact-grid       { grid-template-columns: 1fr; }
+  .edu-item           { grid-template-columns: 1fr; }
+  .projects-grid      { grid-template-columns: 1fr; }
+  .photo-showcase-row { grid-template-columns: 1fr; gap: 32px; }
+  .row-b .showcase-desc { order: 2; }
+  .row-b .showcase-frame-wrap { order: 1; }
 }
-
+ 
 @media (max-width: 640px) {
   section { padding: 72px 6%; }
   .skills-grid, .exp-grid { grid-template-columns: 1fr; }
@@ -679,16 +969,18 @@ footer {
   header::before, header::after { width: 80px; height: 80px; }
   .edu-item { padding: 24px 20px; }
   .exp-card, .skill-card { padding: 28px 24px; }
-  .theme-toggle-wrap { top: 20px; right: 20px; }
+  .theme-toggle-wrap { top: 56px; right: 20px; }
+  .photo-showcase-row { gap: 24px; margin-bottom: 48px; }
+  .sd-title { font-size: 28px; }
 }
 </style>
 </head>
 <body>
-
+ 
 <!-- ── HEADER ───────────────────────────── -->
 <header>
   <div class="header-ornament"></div>
-
+ 
   <!-- Theme Toggle -->
   <a href="https://aditya-baraik.github.io/-/" target="_self" class="theme-toggle-wrap" title="Switch Theme">
     <div class="theme-toggle-track">
@@ -698,60 +990,57 @@ footer {
     </div>
     <span class="theme-toggle-label">Themes</span>
   </a>
-
+ 
   <div class="profile-wrap fade-in">
     <img src="pp.png" alt="Profile Photo" class="profile-img">
   </div>
-
+ 
   <h1 class="fade-in">Aditya Cheek Baraik</h1>
   <h2 class="subtitle fade-in">Creative Technologist &amp; Visual Designer</h2>
   <p class="tagline fade-in">Designing visuals, crafting stories, and building creative digital experiences.</p>
-
+ 
   <div class="header-rule fade-in">
     <span></span>
     <i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i>
     <span></span>
   </div>
-
+ 
   <div class="scroll-cue">Scroll</div>
 </header>
-
+ 
 <!-- ── NAV ──────────────────────────────── -->
 <nav class="top-nav">
   <a href="#about">About</a>
   <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#photography">Photos</a>
   <a href="#experience">Experience</a>
   <a href="#education">Education</a>
   <a href="#contact">Contact</a>
 </nav>
-
+ 
 <!-- ── ABOUT ────────────────────────────── -->
 <section id="about" class="fade-in">
   <span class="section-label">Introduction</span>
   <h3 class="section-title">About Me</h3>
   <div class="section-rule"></div>
-
+ 
   <div class="about-body">
     <p>Computer Instructor and English Honours student with a strong interest in creative technology, visual storytelling, and digital experimentation. My work lies at the intersection of design, photography, writing, and emerging AI tools—where I explore different ways of transforming ideas into visual and digital experiences.</p>
-
     <p>Over the years, I have developed hands-on experience in graphic design, poster and magazine-style layouts, photography, and photo editing, using tools such as Canva, Adobe Photoshop, and Adobe Lightroom. I also experiment with AI-powered creative tools, including AI image generation and generative fill, to explore new possibilities in digital art and visual content.</p>
-
     <p>Alongside creative work, I enjoy exploring the technical side of digital systems. I work with HTML, CSS, and Python, and build small electronics and DIY technology projects using Arduino and Raspberry Pi, combining creativity with practical technology.</p>
-
     <p>As a Computer Instructor and Technical Assistant, I have trained 60+ students in basic computing and MS Office, while developing strong communication, troubleshooting, and problem-solving skills.</p>
-
     <p>Beyond technology and design, I enjoy writing poetry and short stories, often exploring themes of life and human emotions, which further strengthens my passion for storytelling and creative expression.</p>
-
     <p>Currently, I am focused on expanding my work in AI-assisted creativity, visual design, and technology-driven creative projects, while continuously learning and experimenting at the intersection of design, storytelling, and digital innovation.</p>
   </div>
 </section>
-
+ 
 <!-- ── SKILLS ────────────────────────────── -->
 <section id="skills" class="fade-in">
   <span class="section-label">Capabilities</span>
   <h3 class="section-title">Technical &amp; Creative Skills</h3>
   <div class="section-rule"></div>
-
+ 
   <div class="skills-grid">
     <div class="skill-card">
       <h4>Web &amp; Programming</h4>
@@ -763,7 +1052,6 @@ footer {
         <li>GitHub (Static Deployment)</li>
       </ul>
     </div>
-
     <div class="skill-card">
       <h4>Creative &amp; Tools</h4>
       <ul>
@@ -776,13 +1064,179 @@ footer {
     </div>
   </div>
 </section>
-
+ 
+<!-- ── PROJECTS ─────────────────────────── -->
+<section id="projects" class="fade-in">
+  <span class="section-label">Built Things</span>
+  <h3 class="section-title">Selected Projects</h3>
+  <div class="section-rule"></div>
+ 
+  <p class="projects-intro">AI-assisted builds — from web to bots to Android.</p>
+ 
+  <div class="projects-grid">
+ 
+    <!-- Project 1 -->
+    <div class="proj-card">
+      <div class="proj-num">01</div>
+      <div class="proj-card-inner">
+        <div class="proj-status"><div class="proj-status-dot"></div>Live</div>
+        <div class="proj-type">Website</div>
+        <h3>Personal <em>Portfolio</em> Website</h3>
+        <p class="proj-desc">A fully custom dark-themed portfolio website built with HTML, CSS, and JavaScript — no frameworks, no templates. Designed and developed from scratch with AI assistance, featuring smooth animations, responsive layouts, and a distinct editorial aesthetic.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">HTML</span>
+          <span class="proj-tag">CSS</span>
+          <span class="proj-tag">JavaScript</span>
+          <span class="proj-tag">AI-Assisted</span>
+          <span class="proj-tag">GitHub Pages</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://aditya-baraik.github.io/-/" target="_blank" rel="noopener" class="proj-link primary"><i class="fas fa-arrow-up-right-from-square"></i> View Live</a>
+          <a href="https://github.com/aditya-baraik" target="_blank" rel="noopener" class="proj-link secondary"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Project 2 -->
+    <div class="proj-card">
+      <div class="proj-num">02</div>
+      <div class="proj-card-inner">
+        <div class="proj-status"><div class="proj-status-dot"></div>Active</div>
+        <div class="proj-type">Telegram Bot</div>
+        <h3><em>Telegram</em> Bot</h3>
+        <p class="proj-desc">A functional Telegram bot built with AI assistance. Automates tasks, handles user interactions, and runs commands — deployed and actively working.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Telegram API</span>
+          <span class="proj-tag">AI-Assisted</span>
+          <span class="proj-tag">Automation</span>
+        </div>
+        <div class="proj-links">
+          <a href="#" class="proj-link primary"><i class="fab fa-telegram"></i> Open Bot</a>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Project 3 -->
+    <div class="proj-card">
+      <div class="proj-num">03</div>
+      <div class="proj-card-inner">
+        <div class="proj-status"><div class="proj-status-dot static"></div>APK</div>
+        <div class="proj-type">Android Widget</div>
+        <h3>Widget <em>One</em></h3>
+        <p class="proj-desc">A custom Android home screen widget built with AI assistance. Available as a standalone APK — install directly, no Play Store needed.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Widget</span>
+          <span class="proj-tag">AI-Assisted</span>
+          <span class="proj-tag">APK</span>
+        </div>
+        <div class="proj-links">
+          <a href="#" class="proj-link primary"><i class="fas fa-download"></i> Download APK</a>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Project 4 -->
+    <div class="proj-card">
+      <div class="proj-num">04</div>
+      <div class="proj-card-inner">
+        <div class="proj-status"><div class="proj-status-dot static"></div>APK</div>
+        <div class="proj-type">Android Widget</div>
+        <h3>Widget <em>Two</em></h3>
+        <p class="proj-desc">Second custom Android widget — different utility, same sideload-friendly APK delivery. Built with AI assistance to solve a specific home screen need.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Widget</span>
+          <span class="proj-tag">AI-Assisted</span>
+          <span class="proj-tag">APK</span>
+        </div>
+        <div class="proj-links">
+          <a href="#" class="proj-link primary"><i class="fas fa-download"></i> Download APK</a>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- ── PHOTOGRAPHY ───────────────────────── -->
+<section id="photography" class="fade-in">
+  <span class="section-label">Visual Work</span>
+  <h3 class="section-title">Photography &amp; Editing</h3>
+  <div class="section-rule"></div>
+ 
+  <div class="photo-intro">
+    <p>Every frame is a decision — light, shadow, and the quiet moment in between.</p>
+  </div>
+ 
+  <!-- ROW A: Photo LEFT · Description RIGHT -->
+  <div class="photo-showcase-row row-a fade-in">
+    <div class="showcase-frame-wrap">
+      <button class="ext-btn" id="prevA" aria-label="Prev">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="showcase-frame">
+        <div class="showcase-img-wrap">
+          <div class="showcase-placeholder" id="placeholderA">
+            <i class="fas fa-camera"></i>
+          </div>
+          <img id="showcaseImgA" src="" alt="" style="display:none;">
+        </div>
+      </div>
+      <button class="ext-btn" id="nextA" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="showcase-desc" id="descA">
+      <h3 class="sd-title" id="titleA">Shot Title</h3>
+      <div class="sd-divider"></div>
+      <p class="sd-body" id="bodyA">Description loads here.</p>
+    </div>
+  </div>
+ 
+  <!-- ROW B: Description LEFT · Photo RIGHT -->
+  <div class="photo-showcase-row row-b fade-in">
+    <div class="showcase-desc" id="descB">
+      <h3 class="sd-title" id="titleB">Shot Title</h3>
+      <div class="sd-divider"></div>
+      <p class="sd-body" id="bodyB">Description loads here.</p>
+    </div>
+    <div class="showcase-frame-wrap">
+      <button class="ext-btn" id="prevB" aria-label="Prev">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="showcase-frame">
+        <div class="showcase-img-wrap">
+          <div class="showcase-placeholder" id="placeholderB">
+            <i class="fas fa-camera"></i>
+          </div>
+          <img id="showcaseImgB" src="" alt="" style="display:none;">
+        </div>
+      </div>
+      <button class="ext-btn" id="nextB" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+ 
+  <div class="photo-cta fade-in">
+    <div class="photo-cta-left">
+      <span class="photo-cta-text">More frames on Instagram</span>
+    </div>
+    <a href="https://www.instagram.com/_random._.0ne_" target="_blank" rel="noopener" class="btn-ig">
+      <i class="fab fa-instagram"></i>
+      &nbsp;@_random._.0ne_
+    </a>
+  </div>
+</section>
+ 
 <!-- ── EXPERIENCE ────────────────────────── -->
 <section id="experience" class="fade-in">
   <span class="section-label">Professional Journey</span>
   <h3 class="section-title">Work Experience</h3>
   <div class="section-rule"></div>
-
+ 
   <div class="exp-grid">
     <div class="exp-card">
       <h4>Computer Trainer &amp; Technical Coordinator</h4>
@@ -793,7 +1247,6 @@ footer {
         <li>Handled technical troubleshooting</li>
       </ul>
     </div>
-
     <div class="exp-card">
       <h4>Technical Assistant – Gas Office</h4>
       <p class="exp-meta">Data Entry &amp; Portal Management</p>
@@ -802,7 +1255,6 @@ footer {
         <li>Maintained digital records</li>
       </ul>
     </div>
-
     <div class="exp-card">
       <h4>Media Assistant – Local Media</h4>
       <p class="exp-meta">Photography &amp; Post-Production</p>
@@ -813,96 +1265,73 @@ footer {
     </div>
   </div>
 </section>
-
+ 
 <!-- ── EDUCATION ─────────────────────────── -->
 <section id="education" class="fade-in">
   <span class="section-label">Academic Background</span>
   <h3 class="section-title">Education</h3>
   <div class="section-rule"></div>
-
+ 
   <div class="edu-container">
     <div class="edu-item">
       <div>
         <h5>Matriculation</h5>
         <p class="edu-school">Notre Dame School, Gumla</p>
       </div>
-      <div>
-        <div class="edu-badge">2020 · 64.6%</div>
-      </div>
+      <div><div class="edu-badge">2020 · 64.6%</div></div>
     </div>
-
     <div class="edu-item">
       <div>
         <h5>Intermediate</h5>
         <p class="edu-school">Notre Dame School, Gumla</p>
       </div>
-      <div>
-        <div class="edu-badge">2022 · 64.6%</div>
-      </div>
+      <div><div class="edu-badge">2022 · 64.6%</div></div>
     </div>
-
     <div class="edu-item">
       <div>
         <h5>Bachelor of Arts — English (Honours)</h5>
         <p class="edu-school">Kartik Oraon College, Gumla</p>
       </div>
-      <div>
-        <div class="edu-badge">Expected Jun/Jul 2026</div>
-      </div>
+      <div><div class="edu-badge">Expected Jun/Jul 2026</div></div>
     </div>
   </div>
 </section>
-
+ 
 <!-- ── CONTACT ───────────────────────────── -->
 <section id="contact" class="fade-in">
   <span class="section-label">Get In Touch</span>
   <h3 class="section-title">Connect With Me</h3>
   <div class="section-rule"></div>
-
+ 
   <p class="contact-intro">Whether it's a creative collaboration, a technical project, or simply a conversation about design and storytelling — I'd love to hear from you.</p>
-
+ 
   <div class="contact-grid">
     <a href="https://www.linkedin.com/in/aditya-cheek-baraik" target="_blank" rel="noopener noreferrer" class="contact-item">
       <div class="ci-icon"><i class="fab fa-linkedin-in"></i></div>
-      <div class="contact-text">
-        <strong>LinkedIn</strong>
-        <span>Professional profile &amp; career updates</span>
-      </div>
+      <div class="contact-text"><strong>LinkedIn</strong><span>Professional profile &amp; career updates</span></div>
     </a>
-
     <a href="https://github.com/aditya-baraik" target="_blank" rel="noopener noreferrer" class="contact-item">
       <div class="ci-icon"><i class="fab fa-github"></i></div>
-      <div class="contact-text">
-        <strong>GitHub</strong>
-        <span>Code repositories &amp; web projects</span>
-      </div>
+      <div class="contact-text"><strong>GitHub</strong><span>Code repositories &amp; web projects</span></div>
     </a>
-
     <a href="https://www.instagram.com/_random._.0ne_?igsh=MXRhcjl4eXh0OGF1bw==" target="_blank" rel="noopener noreferrer" class="contact-item">
       <div class="ci-icon"><i class="fab fa-instagram"></i></div>
-      <div class="contact-text">
-        <strong>Instagram</strong>
-        <span>Photography &amp; visual storytelling</span>
-      </div>
+      <div class="contact-text"><strong>Instagram</strong><span>Photography &amp; visual storytelling</span></div>
     </a>
-
     <a href="mailto:aditya.c.baraik@gmail.com" id="email-link" class="contact-item">
       <div class="ci-icon"><i class="fas fa-envelope"></i></div>
-      <div class="contact-text">
-        <strong>Email</strong>
-        <span>Direct collaboration &amp; inquiries</span>
-      </div>
+      <div class="contact-text"><strong>Email</strong><span>Direct collaboration &amp; inquiries</span></div>
     </a>
   </div>
 </section>
-
+ 
 <!-- ── FOOTER ────────────────────────────── -->
 <footer>
   &copy; 2026 &nbsp;·&nbsp; Aditya Cheek Baraik &nbsp;·&nbsp; All Rights Reserved
 </footer>
-
+ 
 <script>
-/* Scroll-triggered fade-ins */
+/* ── FADE IN ── */
 const faders = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
@@ -910,62 +1339,82 @@ const observer = new IntersectionObserver((entries, obs) => {
     entry.target.classList.add('active');
     obs.unobserve(entry.target);
   });
-}, { threshold: 0.12 });
-
+}, { threshold: 0.08 });
 faders.forEach(el => observer.observe(el));
-
-/* Stagger header fades */
+ 
 document.querySelectorAll('header .fade-in').forEach((el, i) => {
   el.style.transitionDelay = (i * 0.14) + 's';
   setTimeout(() => el.classList.add('active'), 80 + i * 140);
 });
-
-/* Nav active state on scroll */
+ 
+/* ── NAV ACTIVE ── */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.top-nav a');
-
 const navObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
       navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + id
-          ? 'var(--teal)' : '';
+        a.style.color = a.getAttribute('href') === '#' + id ? 'var(--teal)' : '';
       });
     }
   });
 }, { rootMargin: '-40% 0px -50% 0px' });
-
 sections.forEach(s => navObserver.observe(s));
-
-/* Email: open in Gmail app if on Android/iOS, else open Gmail in browser */
+ 
+/* ── EMAIL ── */
 document.getElementById('email-link').addEventListener('click', function(e) {
   e.preventDefault();
   const email = 'aditya.c.baraik@gmail.com';
   const ua = navigator.userAgent || '';
-  const isAndroid = /Android/i.test(ua);
-  const isIOS = /iPhone|iPad|iPod/i.test(ua);
-
-  if (isAndroid || isIOS) {
-    const mailtoLink = 'mailto:' + email;
-    const gmailAppAndroid = 'googlegmail://co?to=' + email;
-    const gmailWeb = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + email;
-
-    if (isAndroid) {
-      const start = Date.now();
-      window.location = gmailAppAndroid;
-      setTimeout(function() {
-        if (Date.now() - start < 1500) {
-          window.open(gmailWeb, '_blank');
-        }
-      }, 600);
-    } else {
-      window.location = mailtoLink;
-    }
+  if (/Android/i.test(ua)) {
+    const start = Date.now();
+    window.location = 'googlegmail://co?to=' + email;
+    setTimeout(() => { if (Date.now() - start < 1500) window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + email, '_blank'); }, 600);
+  } else if (/iPhone|iPad|iPod/i.test(ua)) {
+    window.location = 'mailto:' + email;
   } else {
     window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + email, '_blank');
   }
 });
+ 
+/* ── PHOTO SHOWCASE ── */
+const PHOTOS = [
+  { title:'Urban Light',      img:'photo1.jpg',  body:'A moment caught between shadow and neon — the city breathes differently after midnight. Streets become canvases, and every lamppost casts a story worth chasing.' },
+  { title:'Still Life',       img:'photo2.jpg',  body:'Silence made visible. Objects arranged by chance, captured by intention. Lightroom-processed to deepen the tones and pull warmth from the shadows.' },
+  { title:'Golden Hour',      img:'photo3.jpg',  body:'That brief window when everything turns amber. Shot handheld, chasing the light across the hillside before it dissolved into the horizon.' },
+  { title:'Texture Study',    img:'photo4.jpg',  body:'Macro perspective reveals worlds invisible to the naked eye. Every surface tells a different story up close — roughness, grain, and forgotten detail.' },
+  { title:'Monochrome',       img:'photo5.jpg',  body:'Stripped of colour, only form and light remain. A portrait study in contrast and shadow — desaturated in Lightroom to let emotion take over.' },
+  { title:'Rain & Reflect',   img:'photo6.jpg',  body:'Wet pavement doubles the world. Found this reflection by accident, composed it by instinct. Rain doesn\'t ruin a shot — it rewrites it.' },
+  { title:'Motion Blur',      img:'photo7.jpg',  body:'Slow shutter, steady hands. Movement recorded not frozen — time made tangible in a single long exposure, city lights trailing like memory.' },
+  { title:'Open Sky',         img:'photo8.jpg',  body:'Sometimes you point the lens upward and let the vastness do the work. Clouds layered like thoughts, shot on a restless afternoon.' },
+  { title:'Borrowed Light',   img:'photo9.jpg',  body:'Window light is the oldest studio. This frame uses a single source to sculpt depth — no artificial fill, just patience and positioning.' },
+  { title:'Negative Space',   img:'photo10.jpg', body:'What\'s missing shapes what\'s there. A deliberate composition built around emptiness — the subject finds its power in what surrounds it.' },
+  { title:'Dusk Geometry',    img:'photo11.jpg', body:'Architecture against a fading sky. Lines, angles, and the last breath of daylight — edited in Photoshop to sharpen contrast and deepen the blue.' },
+  { title:'Final Frame',      img:'photo12.jpg', body:'The last shot of the session. Sometimes the end of the roll holds the best light — a quiet close to a long day of chasing moments.' },
+];
+ 
+const rowA = { idx: 0, count: 6, offset: 0 };
+const rowB = { idx: 0, count: 6, offset: 6 };
+ 
+function updateRow(id, row) {
+  const p = PHOTOS[row.offset + row.idx];
+  document.getElementById('title' + id).textContent = p.title;
+  document.getElementById('body'  + id).textContent = p.body;
+  const img         = document.getElementById('showcaseImg'  + id);
+  const placeholder = document.getElementById('placeholder'  + id);
+  img.src = p.img;
+  img.style.display = 'block';
+  if (placeholder) placeholder.style.display = 'none';
+}
+ 
+document.getElementById('prevA').addEventListener('click', () => { rowA.idx = (rowA.idx - 1 + rowA.count) % rowA.count; updateRow('A', rowA); });
+document.getElementById('nextA').addEventListener('click', () => { rowA.idx = (rowA.idx + 1) % rowA.count; updateRow('A', rowA); });
+document.getElementById('prevB').addEventListener('click', () => { rowB.idx = (rowB.idx - 1 + rowB.count) % rowB.count; updateRow('B', rowB); });
+document.getElementById('nextB').addEventListener('click', () => { rowB.idx = (rowB.idx + 1) % rowB.count; updateRow('B', rowB); });
+ 
+updateRow('A', rowA);
+updateRow('B', rowB);
 </script>
 </body>
 </html>
