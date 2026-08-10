@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISTH | Invisible Architecture</title>
+    
+    <!-- Premium Fonts via Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <!-- IvyPresto / Cormorant Garamond replacement for premium editorial serif headlines -->
+    <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS Engine -->
+    <script src="https://tailwindcss.com"></script>
+
+    <script>
+        // Tailwind Custom Configurations for ISTH Branding Palette
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        isthAlabaster: '#F5F1EB',
+                        isthObsidian: '#111111',
+                        isthCherryNoir: '#5B0D18',
+                        isthChampagne: '#CDB49E',
+                        isthCharcoal: '#1B1B1F',
+                        isthBorder: '#E7E3DD'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Momentum Scrolling Simulation */
+        html {
+            scroll-behavior: smooth;
+            background-color: #FFFFFF;
+        }
+
+        /* Custom Fine Line Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F5F1EB;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5B0D18;
+        }
+
+        /* Glassmorphism Optimization for Webkit Engines */
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Fixed Luxury Outer Frame Elements */
+        .luxury-frame {
+            position: fixed;
+            z-index: 100;
+            background: #FFFFFF;
+            pointer-events: none; /* Allows user to click things behind the border */
+        }
+
+        /* Smooth Cinematic Transitions */
+        .premium-transition {
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-isthObsidian selection:bg-isthCherryNoir selection:text-isthAlabaster">
+
+    <!-- =========================================================================
+         PART 1: THE PERMANENT CANVAS FRAME LAYOUT (Luxury Border Structure)
+         ========================================================================= -->
+    <div class="luxury-frame top-0 left-0 w-full h-[24px]"></div>
+    <div class="luxury-frame bottom-0 left-0 w-full h-[24px]"></div>
+    <div class="luxury-frame top-0 left-0 h-full w-[24px]"></div>
+    <div class="luxury-frame top-0 right-0 h-full w-[24px]"></div>
+
+    <!-- Website Core Container Inside the Frame -->
+    <div class="p-[24px]">
+
+        <!-- =========================================================================
+             PART 2: TOP ANNOUNCEMENT BAR & GLASS NAVIGATION
+             ========================================================================= -->
+        <div class="w-full text-center bg-isthCherryNoir text-isthAlabaster py-2 text-[10px] tracking-[0.25em] uppercase font-medium">
+            Complimentary Shipping on All European Flagship Editions
+        </div>
+
+        <nav class="sticky top-0 z-40 w-full border-b border-isthBorder/40 bg-isthAlabaster/70 glass-nav premium-transition">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+                <!-- Branding Logo Frame -->
+                <a href="#" class="font-serif text-3xl tracking-[0.15em] font-light text-isthObsidian premium-transition hover:opacity-70">
+                    ISTH
+                </a>
+                
+                <!-- Navigation Items -->
+                <div class="hidden md:flex space-x-10 text-xs tracking-[0.15em] uppercase font-medium text-isthObsidian/80">
+                    <a href="#collection" class="hover:text-isthCherryNoir premium-transition">Main Collection</a>
+                    <a href="#testers" class="hover:text-isthCherryNoir premium-transition">Tester Kits</a>
+                    <a href="#quiz" class="hover:text-isthCherryNoir premium-transition">Scent Finder</a>
+                </div>
+
+                <!-- Bag/Cart Counter Accent -->
+                <div class="text-xs tracking-[0.1em] uppercase font-medium">
+                    Cart <span class="font-semibold text-isthCherryNoir">(0)</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- =========================================================================
+             PART 3: CINEMATIC EDITORIAL HERO SECTION
+             ========================================================================= -->
+        <header class="relative w-full h-[75vh] md:h-[85vh] bg-isthCharcoal overflow-hidden flex items-center justify-center">
+            <!-- Luxury Placeholder for Editorial Campaign Video Loop -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity scale-105 premium-transition hover:scale-100" 
+                 style="background-image: url('https://unsplash.com');">
+            </div>
+
+            <!-- Soft Radial Vignette Shadow over Hero background -->
+            <div class="absolute inset-0 bg-gradient-to-t from-isthCharcoal via-transparent to-transparent"></div>
+
+            <!-- Foreground Hero Layout -->
+            <div class="relative z-10 text-center px-4 max-w-3xl">
+                <p class="text-isthChampagne text-xs uppercase tracking-[0.3em] mb-4 font-light">Milan &bull; Paris &bull; Grasse</p>
+                <h1 class="font-serif text-5xl md:text-7xl text-isthAlabaster font-light tracking-wide leading-tight mb-8">
+                    Invisible Architecture
+                </h1>
+                <a href="#collection" class="inline-block border border-isthChampagne text-isthAlabaster px-8 py-4 text-xs tracking-[0.2em] uppercase font-medium bg-transparent hover:bg-isthAlabaster hover:text-isthObsidian premium-transition">
+                    Explore Haute Parfumerie
+                </a>
+            </div>
+
+            <!-- Glassmorphism Floating Metadata Tag (Bottom Right Desktop Only) -->
+            <div class="hidden lg:block absolute bottom-8 right-8 bg-white/10 glass-nav border border-white/20 p-4 text-left text-isthAlabaster max-w-[200px]">
+                <p class="font-serif text-lg leading-tight">No. 07 Cherry Noir</p>
+                <p class="text-[10px] tracking-widest text-isthChampagne uppercase mt-1">Crushed Wood & Amber</p>
+            </div>
+        </header>
+
+        <!-- =========================================================================
+             PART 4: MAIN COLLECTION GRID (10 Perfumes Blueprint Elements)
+             ========================================================================= -->
+        <main id="collection" class="bg-isthAlabaster py-16 md:py-24 border-x border-isthBorder">
+            <div class="max-w-7xl mx-auto px-6 mb-16 text-center md:text-left">
+                <span class="text-xs uppercase tracking-[0.25em] text-isthCherryNoir font-semibold block mb-2">The Architecture of Scent</span>
+                <h2 class="font-serif text-3xl md:text-5xl text-isthObsidian font-light">Main Collection</h2>
+            </div>
+
+            <!-- Two-Column Scalable Master Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 border-t border-isthBorder max-w-7xl mx-auto">
+                
+                <!-- Product Card 1 -->
+                <div class="group border-b md:border-r border-isthBorder p-6 md:p-16 flex flex-col justify-between bg-white premium-transition hover:bg-isthAlabaster">
+                    <div>
+                        <!-- Strict 3:4 Landscape/Portrait Frame Lock -->
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-isthAlabaster/50 border border-isthBorder/40">
+                            <!-- Placeholder simulating perfectly centered bottle photography -->
+                            <img src="https://unsplash.com" 
+                                 alt="ISTH Noir" 
+                                 class="w-full h-full object-cover mix-blend-multiply premium-transition group-hover:scale-105" />
+                        </div>
+                        <div class="mt-8 flex justify-between items-start">
+                            <div>
+                                <h3 class="font-serif text-2xl md:text-3xl text-isthObsidian font-light tracking-wide">ISTH Noir</h3>
+                                <p class="font-sans text-xs text-gray-500 tracking-wider mt-2">Eau de Parfum &bull; 100ml</p>
+                            </div>
+                            <span class="font-sans text-base font-light text-isthObsidian tracking-wide">&euro;165</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 hidden md:block premium-transition">
+                        <button class="w-full py-4 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase hover:bg-isthCherryNoir premium-transition">
+                            Discover Scent Profile
+                        </button>
+                    </div>
+                    <!-- Mobile Tap Target CTA Alternative -->
+                                  <!-- Product Card 3: AMBRE SOUVENIR -->
+                <div class="group border-b md:border-r border-isthBorder p-6 md:p-16 flex flex-col justify-between bg-white premium-transition hover:bg-isthAlabaster">
+                    <div>
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-isthAlabaster/50 border border-isthBorder/40">
+                            <img src="https://unsplash.com" 
+                                 alt="Ambre Souvenir" 
+                                 class="w-full h-full object-cover mix-blend-multiply premium-transition group-hover:scale-105" />
+                        </div>
+                        <div class="mt-8 flex justify-between items-start">
+                            <div>
+                                <h3 class="font-serif text-2xl md:text-3xl text-isthObsidian font-light tracking-wide">Ambre Souvenir</h3>
+                                <p class="font-sans text-xs text-gray-500 tracking-wider mt-2">Eau de Parfum &bull; 100ml</p>
+                            </div>
+                            <span class="font-sans text-base font-light text-isthObsidian tracking-wide">&euro;165</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 hidden md:block premium-transition">
+                        <button class="w-full py-4 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase hover:bg-isthCherryNoir premium-transition">
+                            Discover Scent Profile
+                        </button>
+                    </div>
+                    <button class="w-full mt-6 py-3 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase md:hidden">Discover</button>
+                </div>
+
+                <!-- Product Card 4: CITRON VERRE -->
+                <div class="group border-b border-isthBorder p-6 md:p-16 flex flex-col justify-between bg-white premium-transition hover:bg-isthAlabaster">
+                    <div>
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-isthAlabaster/50 border border-isthBorder/40">
+                            <img src="https://unsplash.com" 
+                                 alt="Citron Verre" 
+                                 class="w-full h-full object-cover mix-blend-multiply premium-transition group-hover:scale-105" />
+                        </div>
+                        <div class="mt-8 flex justify-between items-start">
+                            <div>
+                                <h3 class="font-serif text-2xl md:text-3xl text-isthObsidian font-light tracking-wide">Citron Verre</h3>
+                                <p class="font-sans text-xs text-gray-500 tracking-wider mt-2">Eau de Parfum &bull; 100ml</p>
+                            </div>
+                            <span class="font-sans text-base font-light text-isthObsidian tracking-wide">&euro;155</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 hidden md:block premium-transition">
+                        <button class="w-full py-4 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase hover:bg-isthCherryNoir premium-transition">
+                            Discover Scent Profile
+                        </button>
+                    </div>
+                    <button class="w-full mt-6 py-3 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase md:hidden">Discover</button>
+                </div>
+
+                <!-- Product Card 5: OUD EXTRAIT -->
+                <div class="group border-b md:border-r border-isthBorder p-6 md:p-16 flex flex-col justify-between bg-white premium-transition hover:bg-isthAlabaster">
+                    <div>
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-isthAlabaster/50 border border-isthBorder/40">
+                            <img src="https://unsplash.com" 
+                                 alt="Oud Extrait" 
+                                 class="w-full h-full object-cover mix-blend-multiply premium-transition group-hover:scale-105" />
+                        </div>
+                        <div class="mt-8 flex justify-between items-start">
+                            <div>
+                                <h3 class="font-serif text-2xl md:text-3xl text-isthObsidian font-light tracking-wide">Oud Extrait</h3>
+                                <p class="font-sans text-xs text-gray-500 tracking-wider mt-2">Extrait de Parfum &bull; 50ml</p>
+                            </div>
+                            <span class="font-sans text-base font-light text-isthObsidian tracking-wide">&euro;195</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 hidden md:block premium-transition">
+                        <button class="w-full py-4 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase hover:bg-isthCherryNoir premium-transition">
+                            Discover Scent Profile
+                        </button>
+                    </div>
+                    <button class="w-full mt-6 py-3 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase md:hidden">Discover</button>
+                </div>
+
+                <!-- Product Card 6: BRUME BLANCHE -->
+                <div class="group border-b border-isthBorder p-6 md:p-16 flex flex-col justify-between bg-white premium-transition hover:bg-isthAlabaster">
+                    <div>
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-isthAlabaster/50 border border-isthBorder/40">
+                            <img src="https://unsplash.com" 
+                                 alt="Brume Blanche" 
+                                 class="w-full h-full object-cover mix-blend-multiply premium-transition group-hover:scale-105" />
+                        </div>
+                        <div class="mt-8 flex justify-between items-start">
+                            <div>
+                                <h3 class="font-serif text-2xl md:text-3xl text-isthObsidian font-light tracking-wide">Brume Blanche</h3>
+                                <p class="font-sans text-xs text-gray-500 tracking-wider mt-2">Eau de Parfum &bull; 100ml</p>
+                            </div>
+                            <span class="font-sans text-base font-light text-isthObsidian tracking-wide">&euro;165</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 hidden md:block premium-transition">
+                        <button class="w-full py-4 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase hover:bg-isthCherryNoir premium-transition">
+                            Discover Scent Profile
+                        </button>
+                    </div>
+                    <button class="w-full mt-6 py-3 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase md:hidden">Discover</button>
+                </div>
+
+                <!-- Product Card 7: VETIVER BRUT -->
+                <div class="group border-b md:border-r border-isthBorder p-6 md:p-16 flex flex-col justify-between bg-white premium-transition hover:bg-isthAlabaster">
+                    <div>
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-isthAlabaster/50 border border-isthBorder/40">
+                            <img src="https://unsplash.com" 
+                                 alt="Vetiver Brut" 
+                                 class="w-full h-full object-cover mix-blend-multiply premium-transition group-hover:scale-105" />
+                        </div>
+                        <div class="mt-8 flex justify-between items-start">
+                            <div>
+                                <h3 class="font-serif text-2xl md:text-3xl text-isthObsidian font-light tracking-wide">Vetiver Brut</h3>
+                                <p class="font-sans text-xs text-gray-500 tracking-wider mt-2">Eau de Parfum &bull; 100ml</p>
+                            </div>
+                            <span class="font-sans text-base font-light text-isthObsidian tracking-wide">&euro;160</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 hidden md:block premium-transition">
+                        <button class="w-full py-4 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase hover:bg-isthCherryNoir premium-transition">
+                            Discover Scent Profile
+                        </button>
+                    </div>
+                    <button class="w-full mt-6 py-3 bg-isthObsidian text-white font-sans text-xs tracking-widest uppercase md:hidden">Discover</button>
+                </div>
+
+                <!-- Product Card 8: FIGUE FADE -->
+                <div class="group border-b border-isthBorder p-6 md:p-16 flex flex-col justify-between bg-white premium-transition hover:bg-isthAlabaster">
+                    <div>
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-isthAlabaster/50 border border-isthBorder/40">
+                        </div>
+                    </html>
+                      
