@@ -1,0 +1,7 @@
+{
+  "routes": [
+    { "path": "/", "title": "Aditya Cheek Baraik — Portfolio" },
+    { "path": "/index.html", "title": "Aditya Cheek Baraik — Portfolio" },
+    { "path": "/old.html", "title": "Aditya Cheek Baraik — Portfolio compatibility entry" }
+  ]
+}
