@@ -4,11 +4,11 @@ import tailwindcss from "@tailwindcss/vite"
 import fs from "node:fs"
 import path from "node:path"
 
-import siteConfiguration from "./.figma/make/site.json"
+import siteConfiguration from "./.make/site.json"
 
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
+  // .make/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === "development"
 
   return {
@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
       port: parseInt(process.env.PORT || "8443"),
       strictPort: true,
       watch: {
-        ignored: ["**/.figma/**"],
+        ignored: ["**/.figma/**", "**/.make/**"],
       },
     },
     preview: {
@@ -75,7 +75,7 @@ type FigmaSiteConfiguration = {
   }
 }
 
-/** Applies /.figma/make/site.json to the generated document shell. */
+/** Applies /.make/site.json to the generated document shell. */
 function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
   function sanitizeHtmlValue(value: string | undefined): string {
     return value?.replace(/[^a-zA-Z0-9_-]/g, "") || ""
@@ -385,7 +385,7 @@ function figmaReactRefreshBoundaryFallback(): Plugin {
 }
 
 /**
- * Serves a blank render-target page at /.figma/make/kit.html that
+ * Serves a blank render-target page at /.make/kit.html that
  * the Figma preview script drives directly. The page exposes a
  * registry of every file matching `storiesGlob` on
  * window.__FIGMA__.stories so the design surface can dynamically
@@ -401,7 +401,7 @@ function figmaMakeKitPlugin(options: {
   const storiesGlob = Array.isArray(options.storiesGlob)
     ? options.storiesGlob
     : [options.storiesGlob]
-  const ROUTE = "/.figma/make/kit.html"
+  const ROUTE = "/.make/kit.html"
   const VIRTUAL_ID = "virtual:figma-stories"
   const RESOLVED_ID = "\0" + VIRTUAL_ID
   const STORIES_MODULE = `export const stories = import.meta.glob(${JSON.stringify(storiesGlob)})`
