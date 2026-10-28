@@ -7,7 +7,7 @@
 
 :root {
   --black: #111111;
-  --paper: #f2f0e9;
+  --paper: #ffffff;
   --acid: #e8ff5b;
   --line: rgba(17, 17, 17, 0.22);
   --pad: clamp(1rem, 2.8vw, 2.75rem);
