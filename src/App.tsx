@@ -215,7 +215,7 @@ export default function App() {
 
       <header className="site-header">
         <a className="brand hover-line" href="#top" aria-label="Back to top">
-          Aditya
+          PORTFOLIO
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a className="hover-line" href="#reel">
