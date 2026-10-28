@@ -320,10 +320,7 @@ export default function App() {
             aria-label="Photography reel"
           />
           <div className="reel__wash" />
-        </div>
-        <div className="reel__top">
-          <span>Selected visual archive</span>
-          <span>Photography and editing</span>
+          <div className="reel__cinematic">Cinematic</div>
         </div>
         <div className="reel__bottom">
           <button
