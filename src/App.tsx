@@ -231,7 +231,7 @@ export default function App() {
             Experience
           </a>
         </nav>
-        <a className="header-contact hover-line" href="#contact">
+        <a className="header-contact hover-line" href={`mailto:${profile.email}`}>
           Let&apos;s talk <Arrow />
         </a>
         <button
