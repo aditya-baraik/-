@@ -290,9 +290,7 @@ export default function App() {
           <div className="hero__meta">
             <p>{profile.role}</p>
             <p>Based in {profile.location}</p>
-            <a href="#reel" className="hero__scroll">
-              Scroll to explore <span>↓</span>
-            </a>
+            <span className="hero__polymath">Polymath</span>
           </div>
           <h1 aria-label={profile.name}>
             <span>{profile.name}</span>
@@ -301,7 +299,6 @@ export default function App() {
             <div className="hero__curtain-name">{profile.name}</div>
             <div className="hero__curtain-foot">
               <span>Design Photography Technology</span>
-              <span>Scroll to reveal ↓</span>
             </div>
           </div>
         </div>

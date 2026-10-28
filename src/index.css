@@ -338,26 +338,14 @@
   max-width: 9rem;
 }
 
-.hero__scroll {
+.hero__polymath {
   justify-self: end;
-}
-
-.hero__scroll span {
-  display: inline-block;
-  margin-left: 0.35rem;
-  animation: bob 1.8s ease-in-out infinite;
-}
-
-@keyframes bob {
-  50% {
-    transform: translateY(0.3rem);
-  }
 }
 
 .hero h1 {
   position: absolute;
   right: var(--pad);
-  bottom: calc(35vh - 15px);
+  bottom: calc(35vh - 40px);
   left: var(--pad);
   z-index: 3;
   display: block;
@@ -425,11 +413,6 @@
 
 .hero__curtain-foot {
   bottom: 2rem;
-}
-
-.hero__curtain-foot span:last-child {
-  grid-column: 3;
-  justify-self: end;
 }
 
 .hero__curtain-name {
