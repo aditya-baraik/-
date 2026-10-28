@@ -21,6 +21,13 @@
   -webkit-font-smoothing: auto;
 }
 
+.name-spacing,
+.loader span.name-spacing,
+.hero__curtain-name.name-spacing,
+.hero h1 .name-spacing {
+  letter-spacing: 0.015em;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

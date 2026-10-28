@@ -283,7 +283,7 @@ export default function App() {
         className={`loader ${loaded ? "loader--done" : ""}`}
         aria-hidden="true"
       >
-        <span>Aditya Cheek Baraik</span>
+        <span className="name-spacing">{profile.name}</span>
         <div className="loader__line" />
       </div>
 
@@ -372,10 +372,10 @@ export default function App() {
             <span className="hero__polymath">Polymath</span>
           </div>
           <h1 aria-label={profile.name}>
-            <span>{profile.name}</span>
+            <span className="name-spacing">{profile.name}</span>
           </h1>
           <div className="hero__curtain" aria-hidden="true">
-            <div className="hero__curtain-name">{profile.name}</div>
+            <div className="hero__curtain-name name-spacing">{profile.name}</div>
             <div className="hero__curtain-foot">
               <span>Design Photography Technology</span>
             </div>
@@ -500,7 +500,7 @@ export default function App() {
           </h2>
           <div className="about__body" data-reveal>
             <p>
-              I am {profile.name} a Computer Instructor and English Honours
+              I am <span className="name-spacing">{profile.name}</span> a Computer Instructor and English Honours
               student with a deep interest in creative technology visual
               storytelling and digital experimentation
             </p>
@@ -627,7 +627,7 @@ export default function App() {
 
       <footer id="contact">
         <div className="footer__top">
-          <p>{profile.name}</p>
+          <p className="name-spacing">{profile.name}</p>
           <div>
             <a className="hover-line" href="#top">
               Back to top ↑
