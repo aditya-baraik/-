@@ -89,6 +89,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [reelPlaying, setReelPlaying] = useState(true)
+  const [aboutAlternateActive, setAboutAlternateActive] = useState(false)
   const cursorRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
   const reelRef = useRef<HTMLElement>(null)
@@ -386,7 +387,14 @@ export default function App() {
       </div>
 
       <section className="about" id="about">
-        <div className="about__portrait" data-reveal>
+        <button
+          type="button"
+          className={`about__portrait${aboutAlternateActive ? " about__portrait--alternate" : ""}`}
+          data-reveal
+          aria-label="About portrait image frame 10; tap to switch between image10.png and image10.1.jpg"
+          aria-pressed={aboutAlternateActive}
+          onClick={() => setAboutAlternateActive((active) => !active)}
+        >
           <div className="image-fallback image-fallback--light">
             <span>Portrait</span>
             <small>Image ready for upload</small>
@@ -394,10 +402,18 @@ export default function App() {
           <img
             src={asset("media/image10.png")}
             alt={`Portrait of ${profile.name}`}
+            className="about__portrait-primary"
             loading="lazy"
             onError={(event) => (event.currentTarget.style.opacity = "0")}
           />
-        </div>
+          <img
+            src={asset("media/image10.1.jpg")}
+            alt={`Alternate portrait frame 10.1 for ${profile.name}`}
+            className="about__portrait-secondary"
+            loading="lazy"
+            onError={(event) => (event.currentTarget.style.opacity = "0")}
+          />
+        </button>
         <div className="about__copy">
           <div className="section-label section-label--dark" data-reveal>
             <span>About me</span>

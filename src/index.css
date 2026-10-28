@@ -723,8 +723,16 @@
 
 .about__portrait {
   position: relative;
+  display: block;
+  width: 100%;
   min-height: 80svh;
+  padding: 0;
   overflow: hidden;
+  border: 0;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
 }
 
 .about__portrait img {
@@ -737,8 +745,33 @@
   transition: opacity 0.35s ease, transform 1.5s var(--ease);
 }
 
+.about__portrait .about__portrait-primary {
+  opacity: 1;
+}
+
+.about__portrait .about__portrait-secondary {
+  opacity: 0;
+}
+
+.about__portrait:hover .about__portrait-secondary,
+.about__portrait:focus-visible .about__portrait-secondary,
+.about__portrait--alternate .about__portrait-secondary {
+  opacity: 1;
+}
+
+.about__portrait:hover .about__portrait-primary,
+.about__portrait:focus-visible .about__portrait-primary,
+.about__portrait--alternate .about__portrait-primary {
+  opacity: 0;
+}
+
 .about__portrait:hover img {
   transform: scale(1.03);
+}
+
+.about__portrait:focus-visible {
+  outline: 2px solid var(--acid);
+  outline-offset: -4px;
 }
 
 .about__copy {
