@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import image8FrameFiles from "virtual:image8-frames"
 
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
-const image8Frames = image8FrameFiles.length ? image8FrameFiles : ["image8.jpg"]
+const image8Frames = image8FrameFiles.length ? image8FrameFiles : ["image8.webp"]
 
 const profile = {
   name: "Aditya Cheek Baraik",
@@ -16,14 +16,14 @@ const profile = {
 }
 
 const photographs = [
-  { src: asset("media/image2.jpg"), title: "Stillness", className: "feature" },
-  { src: asset("media/image3.jpg"), title: "Golden Hour", className: "portrait" },
-  { src: asset("media/image4.jpg"), title: "In Motion", className: "portrait" },
-  { src: asset("media/image5.jpg"), title: "Solitude", className: "landscape" },
-  { src: asset("media/image6.jpg"), title: "The Everyday", className: "square" },
-  { src: asset("media/image7.jpg"), title: "After Light", className: "tall" },
-  { src: asset("media/image8.jpg"), title: "Somewhere Quiet", className: "wide" },
-  { src: asset("media/image9.jpg"), title: "Passing Through", className: "square" },
+  { src: asset("media/image2.webp"), title: "Stillness", className: "feature" },
+  { src: asset("media/image3.webp"), title: "Golden Hour", className: "portrait" },
+  { src: asset("media/image4.webp"), title: "In Motion", className: "portrait" },
+  { src: asset("media/image5.webp"), title: "Solitude", className: "landscape" },
+  { src: asset("media/image6.webp"), title: "The Everyday", className: "square" },
+  { src: asset("media/image7.webp"), title: "After Light", className: "tall" },
+  { src: asset("media/image8.webp"), title: "Somewhere Quiet", className: "wide" },
+  { src: asset("media/image9.webp"), title: "Passing Through", className: "square" },
 ]
 
 const capabilities = [
@@ -146,6 +146,33 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    const carousel = document.querySelector(".work-tail")
+    if (!carousel) return
+    const preloadFrames = () => {
+      image8Frames.forEach((frame) => {
+        const image = new Image()
+        image.decoding = "async"
+        image.src = asset(`media/${frame}`)
+      })
+    }
+    if (!("IntersectionObserver" in window)) {
+      preloadFrames()
+      return
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          preloadFrames()
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "700px 0px" },
+    )
+    observer.observe(carousel)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
     let frame = 0
@@ -238,6 +265,7 @@ export default function App() {
           }
           alt={`${photo.title} photograph`}
           loading={index === 0 ? "eager" : "lazy"}
+          decoding="async"
           onError={(event) => (event.currentTarget.style.opacity = "0")}
         />
         <div className="photo-card__view">View image</div>
@@ -329,8 +357,11 @@ export default function App() {
               <small>Image ready for upload</small>
             </div>
             <img
-              src={asset("media/image1.jpg")}
+              src={asset("media/image1.webp")}
               alt="Featured photograph"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               onError={(event) => (event.currentTarget.style.opacity = "0")}
             />
             <div className="hero__shade" />
@@ -450,11 +481,12 @@ export default function App() {
           <img
             src={asset(
               aboutAlternateActive || aboutPointerHovering
-                ? "media/image10.1.jpg"
-                : "media/image10.png",
+                ? "media/image10.1.webp"
+                : "media/image10.webp",
             )}
             alt={`${aboutAlternateActive || aboutPointerHovering ? "Alternate portrait" : "Portrait"} of ${profile.name}`}
             loading="lazy"
+            decoding="async"
             onError={(event) => (event.currentTarget.style.opacity = "0")}
           />
         </button>

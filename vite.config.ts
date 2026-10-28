@@ -53,18 +53,39 @@ function image8FramesPlugin(): Plugin {
   const moduleId = "virtual:image8-frames"
   const resolvedModuleId = `\0${moduleId}`
   const mediaDirectory = path.resolve(__dirname, "public/media")
-  const imagePattern = /^image8\.(\d+)\.(?:png|jpe?g|webp|avif)$/i
+  const imagePattern = /^image8\.(\d+)\.(png|jpe?g|webp|avif)$/i
 
   const listFrames = () => {
     if (!fs.existsSync(mediaDirectory)) return []
-    return fs
+    const frames = fs
       .readdirSync(mediaDirectory)
       .map((name) => ({ name, match: name.match(imagePattern) }))
       .filter((file): file is { name: string; match: RegExpMatchArray } =>
         file.match !== null,
       )
-      .sort((a, b) => Number(a.match[1]) - Number(b.match[1]))
-      .map((file) => file.name)
+    const formatPriority: Record<string, number> = {
+      webp: 0,
+      avif: 1,
+      jpg: 2,
+      jpeg: 2,
+      png: 3,
+    }
+    const selected = new Map<number, (typeof frames)[number]>()
+    for (const frame of frames) {
+      const frameNumber = Number(frame.match[1])
+      const extension = frame.match[2].toLowerCase()
+      const previous = selected.get(frameNumber)
+      const previousExtension = previous?.match[2].toLowerCase()
+      if (
+        !previous ||
+        formatPriority[extension] < formatPriority[previousExtension ?? "png"]
+      ) {
+        selected.set(frameNumber, frame)
+      }
+    }
+    return [...selected.entries()]
+      .sort(([a], [b]) => a - b)
+      .map(([, frame]) => frame.name)
   }
 
   return {
