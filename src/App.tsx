@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react"
+import image8FrameFiles from "virtual:image8-frames"
 
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
+const image8Frames = image8FrameFiles.length ? image8FrameFiles : ["image8.jpg"]
 
 const profile = {
   name: "Aditya Cheek Baraik",
@@ -91,6 +93,7 @@ export default function App() {
   const [reelPlaying, setReelPlaying] = useState(true)
   const [aboutAlternateActive, setAboutAlternateActive] = useState(false)
   const [aboutPointerHovering, setAboutPointerHovering] = useState(false)
+  const [image8FrameIndex, setImage8FrameIndex] = useState(0)
   const cursorRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
   const reelRef = useRef<HTMLElement>(null)
@@ -133,6 +136,14 @@ export default function App() {
       reelVideoRef.current.pause()
     }
   }, [reelPlaying])
+
+  useEffect(() => {
+    if (image8Frames.length < 2) return
+    const timer = window.setInterval(() => {
+      setImage8FrameIndex((index) => (index + 1) % image8Frames.length)
+    }, 4000)
+    return () => window.clearInterval(timer)
+  }, [])
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
@@ -212,7 +223,19 @@ export default function App() {
           <small>Image ready for upload</small>
         </div>
         <img
-          src={photo.src}
+          key={
+            photo.title === "Somewhere Quiet"
+              ? image8Frames[image8FrameIndex]
+              : photo.src
+          }
+          className={
+            photo.title === "Somewhere Quiet" ? "photo-card__image8" : undefined
+          }
+          src={
+            photo.title === "Somewhere Quiet"
+              ? asset(`media/${image8Frames[image8FrameIndex]}`)
+              : photo.src
+          }
           alt={`${photo.title} photograph`}
           loading={index === 0 ? "eager" : "lazy"}
           onError={(event) => (event.currentTarget.style.opacity = "0")}
@@ -365,7 +388,7 @@ export default function App() {
           I bring design photography storytelling and technology together to
           turn thoughtful ideas into memorable visual experiences
         </p>
-        <a className="text-link hover-line" href="#about" data-reveal>
+        <a className="pill text-link hover-line" href="#about" data-reveal>
           More about me <Arrow />
         </a>
       </section>

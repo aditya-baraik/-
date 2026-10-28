@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tailwindcss(),
+      image8FramesPlugin(),
       figmaSiteConfiguration(siteConfiguration),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
@@ -47,6 +48,50 @@ export default defineConfig(({ mode }) => {
     },
   }
 })
+
+function image8FramesPlugin(): Plugin {
+  const moduleId = "virtual:image8-frames"
+  const resolvedModuleId = `\0${moduleId}`
+  const mediaDirectory = path.resolve(__dirname, "public/media")
+  const imagePattern = /^image8\.(\d+)\.(?:png|jpe?g|webp|avif)$/i
+
+  const listFrames = () => {
+    if (!fs.existsSync(mediaDirectory)) return []
+    return fs
+      .readdirSync(mediaDirectory)
+      .map((name) => ({ name, match: name.match(imagePattern) }))
+      .filter((file): file is { name: string; match: RegExpMatchArray } =>
+        file.match !== null,
+      )
+      .sort((a, b) => Number(a.match[1]) - Number(b.match[1]))
+      .map((file) => file.name)
+  }
+
+  return {
+    name: "portfolio-image8-frame-discovery",
+    resolveId(id) {
+      return id === moduleId ? resolvedModuleId : null
+    },
+    load(id) {
+      if (id === resolvedModuleId) {
+        return `export default ${JSON.stringify(listFrames())}`
+      }
+    },
+    configureServer(server) {
+      server.watcher.add(mediaDirectory)
+      const reloadForImage8Frame = (file: string) => {
+        const absolutePath = path.resolve(file)
+        if (path.dirname(absolutePath) !== mediaDirectory) return
+        if (!imagePattern.test(path.basename(absolutePath))) return
+        const module = server.moduleGraph.getModuleById(resolvedModuleId)
+        if (module) server.moduleGraph.invalidateModule(module)
+        server.ws.send({ type: "full-reload" })
+      }
+      server.watcher.on("add", reloadForImage8Frame)
+      server.watcher.on("unlink", reloadForImage8Frame)
+    },
+  }
+}
 
 type FigmaSiteConfiguration = {
   title?: string
