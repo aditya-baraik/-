@@ -519,14 +519,10 @@
 
 .reel__stage {
   position: absolute;
-  inset: 5rem 4rem 4.5rem;
+  inset: 0;
   overflow: hidden;
-  border: 0.7rem solid #0c0c0c;
+  border: 0;
   background: #111;
-  box-shadow: 0 2.5rem 7rem rgba(17, 17, 17, 0.2);
-  transform: translate3d(var(--reel-x), var(--reel-y), 0);
-  transition: transform 1.2s var(--ease);
-  will-change: transform;
 }
 
 .reel__fallback {
@@ -599,20 +595,7 @@
     radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.13));
 }
 
-.reel__inner-frame {
-  position: absolute;
-  inset: 2.5rem;
-  z-index: 5;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  pointer-events: none;
-  transform: scale(1);
-  transition: transform 0.8s var(--ease), opacity 0.5s ease;
-}
 
-.reel:hover .reel__inner-frame {
-  opacity: 0.55;
-  transform: scale(0.985);
-}
 
 .reel__top,
 .reel__bottom {
@@ -1254,18 +1237,11 @@ footer {
     min-height: 570px;
   }
 
-  .reel__stage {
-    inset: 4rem 0.8rem 4.2rem;
-    border-width: 0.4rem;
-  }
 
   .reel__slide img {
     object-position: center;
   }
 
-  .reel__inner-frame {
-    inset: 0.55rem;
-  }
 
   .reel__top {
     top: 1rem;

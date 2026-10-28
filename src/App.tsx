@@ -359,12 +359,13 @@ export default function App() {
           <video
             ref={reelVideoRef}
             className="reel__video"
-            src={asset("reel.mp4")}
+            src={asset("video1.mp4")}
             autoPlay
             muted
             loop
             playsInline
             aria-label="Photography reel"
+            onError={(event) => (event.currentTarget.style.display = "none")}
           />
           {reelImages.map((image, index) => (
             <div
@@ -383,7 +384,6 @@ export default function App() {
             </div>
           ))}
           <div className="reel__wash" />
-          <div className="reel__inner-frame" />
         </div>
         <div className="reel__top">
           <span>Selected visual archive</span>
