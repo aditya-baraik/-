@@ -218,17 +218,17 @@ export default function App() {
           PORTFOLIO
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <a className="hover-line" href="#reel">
-            Reel
+          <a className="hover-line" href="#about">
+            About
           </a>
           <a className="hover-line" href="#work">
             Work
           </a>
-          <a className="hover-line" href="#about">
-            About
-          </a>
           <a className="hover-line" href="#experience">
             Experience
+          </a>
+          <a className="hover-line" href="#contact">
+            Contact
           </a>
         </nav>
         <a className="header-contact hover-line" href={`mailto:${profile.email}`}>
@@ -251,14 +251,11 @@ export default function App() {
       >
         <p className="menu-panel__eyebrow">Navigate</p>
         <nav aria-label="Mobile navigation">
-          <a href="#reel" onClick={closeMenu}>
-            Reel
+          <a href="#about" onClick={closeMenu}>
+            About
           </a>
           <a href="#work" onClick={closeMenu}>
             Work
-          </a>
-          <a href="#about" onClick={closeMenu}>
-            About
           </a>
           <a href="#experience" onClick={closeMenu}>
             Experience
@@ -521,7 +518,7 @@ export default function App() {
         </div>
       </section>
 
-      <section className="contact section-pad" id="contact">
+      <section className="contact section-pad">
         <div className="section-label" data-reveal>
           <span>Have an idea in mind</span>
           <span>Available for select projects</span>
@@ -534,23 +531,9 @@ export default function App() {
           <span>Let&apos;s create</span>
           <span>something real</span>
         </a>
-        <div className="contact__socials" data-reveal>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer">
-            LinkedIn <Arrow />
-          </a>
-          <a href={profile.github} target="_blank" rel="noreferrer">
-            GitHub <Arrow />
-          </a>
-          <a href={profile.instagram} target="_blank" rel="noreferrer">
-            Instagram <Arrow />
-          </a>
-          <a href={`mailto:${profile.email}`}>
-            Email <Arrow />
-          </a>
-        </div>
       </section>
 
-      <footer>
+      <footer id="contact">
         <div className="footer__top">
           <p>{profile.name}</p>
           <div>
@@ -586,7 +569,12 @@ export default function App() {
             >
               LinkedIn <Arrow />
             </a>
-            <a className="hover-line" href={`mailto:${profile.email}`}>
+            <a
+              className="hover-line"
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               Email <Arrow />
             </a>
           </div>
