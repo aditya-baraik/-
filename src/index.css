@@ -745,26 +745,6 @@
   transition: opacity 0.35s ease, transform 1.5s var(--ease);
 }
 
-.about__portrait .about__portrait-primary {
-  opacity: 1;
-}
-
-.about__portrait .about__portrait-secondary {
-  opacity: 0;
-}
-
-.about__portrait:hover .about__portrait-secondary,
-.about__portrait:focus-visible .about__portrait-secondary,
-.about__portrait--alternate .about__portrait-secondary {
-  opacity: 1;
-}
-
-.about__portrait:hover .about__portrait-primary,
-.about__portrait:focus-visible .about__portrait-primary,
-.about__portrait--alternate .about__portrait-primary {
-  opacity: 0;
-}
-
 .about__portrait:hover img {
   transform: scale(1.03);
 }

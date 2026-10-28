@@ -90,6 +90,7 @@ export default function App() {
   const [loaded, setLoaded] = useState(false)
   const [reelPlaying, setReelPlaying] = useState(true)
   const [aboutAlternateActive, setAboutAlternateActive] = useState(false)
+  const [aboutPointerHovering, setAboutPointerHovering] = useState(false)
   const cursorRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
   const reelRef = useRef<HTMLElement>(null)
@@ -389,27 +390,29 @@ export default function App() {
       <section className="about" id="about">
         <button
           type="button"
-          className={`about__portrait${aboutAlternateActive ? " about__portrait--alternate" : ""}`}
+          className="about__portrait"
           data-reveal
           aria-label="About portrait image frame 10; tap to switch between image10.png and image10.1.jpg"
           aria-pressed={aboutAlternateActive}
           onClick={() => setAboutAlternateActive((active) => !active)}
+          onPointerEnter={(event) => {
+            if (event.pointerType === "mouse") setAboutPointerHovering(true)
+          }}
+          onPointerLeave={(event) => {
+            if (event.pointerType === "mouse") setAboutPointerHovering(false)
+          }}
         >
           <div className="image-fallback image-fallback--light">
             <span>Portrait</span>
             <small>Image ready for upload</small>
           </div>
           <img
-            src={asset("media/image10.png")}
-            alt={`Portrait of ${profile.name}`}
-            className="about__portrait-primary"
-            loading="lazy"
-            onError={(event) => (event.currentTarget.style.opacity = "0")}
-          />
-          <img
-            src={asset("media/image10.1.jpg")}
-            alt={`Alternate portrait frame 10.1 for ${profile.name}`}
-            className="about__portrait-secondary"
+            src={asset(
+              aboutAlternateActive || aboutPointerHovering
+                ? "media/image10.1.jpg"
+                : "media/image10.png",
+            )}
+            alt={`${aboutAlternateActive || aboutPointerHovering ? "Alternate portrait" : "Portrait"} of ${profile.name}`}
             loading="lazy"
             onError={(event) => (event.currentTarget.style.opacity = "0")}
           />
