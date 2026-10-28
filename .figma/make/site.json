@@ -1,0 +1,15 @@
+{
+  "title": "Aditya Cheek Baraik Portfolio",
+  "description": "The creative portfolio of Aditya Cheek Baraik, showcasing photography, design, and technology.",
+  "language": "en",
+  "robots": {
+    "index": true
+  },
+  "icons": {
+    "icon": "/favicon.svg"
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
