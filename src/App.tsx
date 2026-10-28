@@ -200,6 +200,31 @@ export default function App() {
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
+  const renderPhotoCard = (photo: (typeof photographs)[number], index: number) => (
+    <figure
+      className={`photo-card photo-card--${photo.className}`}
+      key={photo.src}
+      data-reveal
+    >
+      <div className="photo-card__frame">
+        <div className="image-fallback">
+          <span>{photo.title}</span>
+          <small>Image ready for upload</small>
+        </div>
+        <img
+          src={photo.src}
+          alt={`${photo.title} photograph`}
+          loading={index === 0 ? "eager" : "lazy"}
+          onError={(event) => (event.currentTarget.style.opacity = "0")}
+        />
+        <div className="photo-card__view">View image</div>
+      </div>
+      <figcaption>
+        <span>{photo.title}</span>
+        <span>Photography and editing</span>
+      </figcaption>
+    </figure>
+  )
 
   return (
     <main>
@@ -351,34 +376,25 @@ export default function App() {
           <span>Recent visual work</span>
         </div>
         <div className="gallery">
-          {photographs.map((photo, index) => (
-            <figure
-              className={`photo-card photo-card--${photo.className}`}
-              key={photo.src}
-              data-reveal
-            >
-              <div className="photo-card__frame">
-                <div className="image-fallback">
-                  <span>{photo.title}</span>
-                  <small>Image ready for upload</small>
-                </div>
-                <img
-                  src={photo.src}
-                  alt={`${photo.title} photograph`}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  onError={(event) => (event.currentTarget.style.opacity = "0")}
-                />
-                <div className="photo-card__view">View image</div>
-              </div>
-              <figcaption>
-                <span>{photo.title}</span>
-                <span>Photography and editing</span>
-              </figcaption>
-            </figure>
-          ))}
+          {photographs.slice(0, 4).map((photo, index) =>
+            renderPhotoCard(photo, index),
+          )}
+        </div>
+        <div className="gallery gallery--pair">
+          {photographs.slice(4, 6).map((photo, index) =>
+            renderPhotoCard(photo, index + 4),
+          )}
         </div>
       </section>
       </div>
+
+      <section className="work-tail">
+        <div className="gallery gallery--tail">
+          {photographs.slice(6).map((photo, index) =>
+            renderPhotoCard(photo, index + 6),
+          )}
+        </div>
+      </section>
 
       <div className="marquee" aria-hidden="true">
         <div className="marquee__track">
