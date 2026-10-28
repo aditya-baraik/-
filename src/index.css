@@ -522,6 +522,12 @@
   padding-left: var(--pad);
 }
 
+.pre-marquee {
+  --line: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  background: #000000;
+}
+
 .section-label {
   display: flex;
   justify-content: space-between;
@@ -609,7 +615,7 @@
 }
 
 .photo-card--square:nth-of-type(5) {
-  grid-column-start: 2;
+  grid-column: 2 / span 6;
 }
 
 .photo-card--tall {

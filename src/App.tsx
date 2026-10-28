@@ -215,6 +215,7 @@ export default function App() {
         <span />
       </div>
 
+      <div className="pre-marquee">
       <header className="site-header">
         <a className="brand hover-line" href="#top" aria-label="Back to top">
           PORTFOLIO
@@ -377,6 +378,7 @@ export default function App() {
           ))}
         </div>
       </section>
+      </div>
 
       <div className="marquee" aria-hidden="true">
         <div className="marquee__track">
