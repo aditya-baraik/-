@@ -318,7 +318,6 @@ export default function App() {
             <div className="hero__shade" />
           </div>
           <div className="hero__portrait-layer" ref={portraitLayerRef}>
-            <div className="hero__portrait-backdrop" />
             <div className="hero__portrait">
               <div className="image-fallback image-fallback--light">
                 <span>Aditya</span>
@@ -329,10 +328,6 @@ export default function App() {
                 alt={`Portrait of ${profile.name}`}
                 onError={(event) => (event.currentTarget.style.opacity = "0")}
               />
-            </div>
-            <div className="hero__portrait-caption">
-              <span>{profile.name}</span>
-              <span>{profile.location}</span>
             </div>
           </div>
           <div className="hero__meta">

@@ -337,44 +337,16 @@
   animation: portraitEnter 1.4s 0.7s var(--ease) both;
 }
 
-.hero__portrait-backdrop {
-  position: absolute;
-  inset: 1.2rem -1.2rem -1.2rem 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  background: #0b0b0b;
-  transform: translate3d(calc(var(--portrait-x) * -0.35), calc(var(--portrait-y) * -0.35), 0);
-  transition: transform 1.1s var(--ease);
-}
 
-.hero__portrait-layer::before {
-  position: absolute;
-  top: -1.8rem;
-  left: 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  content: 'EDITORIAL PORTRAIT';
-}
 
 .hero__portrait {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  border: clamp(0.5rem, 0.8vw, 0.85rem) solid var(--paper);
-  background: #d8d5cc;
   clip-path: inset(0);
-  box-shadow: 0 2rem 7rem rgba(0, 0, 0, 0.5);
   animation: portraitClip 1.5s 0.72s var(--ease) both;
 }
 
-.hero__portrait::after {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  content: "";
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 62%, rgba(0, 0, 0, 0.28));
-}
 
 .hero__portrait img {
   position: absolute;
@@ -393,21 +365,6 @@
   transform: scale(1.02);
 }
 
-.hero__portrait-caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 3;
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 1.2rem;
-  color: white;
-  font-size: 0.72rem;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
-  transform: translateY(0);
-  animation: captionUp 1s 1.35s var(--ease) both;
-}
 
 @keyframes portraitEnter {
   from {
@@ -422,12 +379,6 @@
   }
 }
 
-@keyframes captionUp {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-}
 
 .hero__meta {
   position: absolute;
@@ -1261,14 +1212,7 @@ footer {
     height: min(62vh, 35rem);
   }
 
-  .hero__portrait-backdrop {
-    inset: 0.75rem -0.75rem -0.75rem 0.75rem;
-  }
 
-  .hero__portrait-caption {
-    padding: 0.75rem;
-    font-size: 0.58rem;
-  }
 
   .hero__meta {
     top: auto;
