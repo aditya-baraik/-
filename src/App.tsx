@@ -94,7 +94,6 @@ export default function App() {
   const [activeReel, setActiveReel] = useState(0)
   const cursorRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
-  const portraitLayerRef = useRef<HTMLDivElement>(null)
   const reelRef = useRef<HTMLElement>(null)
   const reelVideoRef = useRef<HTMLVideoElement>(null)
 
@@ -153,20 +152,9 @@ export default function App() {
     let frame = 0
 
     const updateDepth = (event: PointerEvent) => {
-      if (!portraitLayerRef.current && !reelRef.current) return
+      if (!reelRef.current) return
       window.cancelAnimationFrame(frame)
       frame = window.requestAnimationFrame(() => {
-        const x = event.clientX / window.innerWidth - 0.5
-        const y = event.clientY / window.innerHeight - 0.5
-        portraitLayerRef.current?.style.setProperty(
-          "--portrait-x",
-          `${x * 24}px`,
-        )
-        portraitLayerRef.current?.style.setProperty(
-          "--portrait-y",
-          `${y * 18}px`,
-        )
-
         if (reelRef.current) {
           const bounds = reelRef.current.getBoundingClientRect()
           const reelX = (event.clientX - bounds.left) / bounds.width - 0.5
@@ -191,10 +179,6 @@ export default function App() {
       heroRef.current.style.setProperty(
         "--hero-media-y",
         `${progress * 0.055}px`,
-      )
-      heroRef.current.style.setProperty(
-        "--hero-portrait-scroll",
-        `${progress * -0.085}px`,
       )
       heroRef.current.style.setProperty(
         "--hero-title-y",
@@ -316,19 +300,6 @@ export default function App() {
               onError={(event) => (event.currentTarget.style.opacity = "0")}
             />
             <div className="hero__shade" />
-          </div>
-          <div className="hero__portrait-layer" ref={portraitLayerRef}>
-            <div className="hero__portrait">
-              <div className="image-fallback image-fallback--light">
-                <span>Aditya</span>
-                <small>Profile image ready for upload</small>
-              </div>
-              <img
-                src={asset("pp.png")}
-                alt={`Portrait of ${profile.name}`}
-                onError={(event) => (event.currentTarget.style.opacity = "0")}
-              />
-            </div>
           </div>
           <div className="hero__meta">
             <p>{profile.role}</p>

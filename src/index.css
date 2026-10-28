@@ -228,7 +228,6 @@
 
 .hero {
   --hero-media-y: 0px;
-  --hero-portrait-scroll: 0px;
   --hero-title-y: 0px;
   --curtain-y: 0vh;
   --curtain-fold: 0rem;
@@ -311,73 +310,16 @@
   letter-spacing: -0.06em;
 }
 
-.image-fallback--light {
-  color: rgba(17, 17, 17, 0.55);
-  background:
-    linear-gradient(135deg, transparent 49.9%, rgba(0, 0, 0, 0.08) 50%, transparent 50.1%),
-    #d8d5cc;
-}
-
-.hero__portrait-layer {
-  --portrait-x: 0px;
-  --portrait-y: 0px;
-  position: absolute;
-  top: 8%;
-  left: 50%;
-  z-index: 4;
-  width: clamp(22rem, 31vw, 37rem);
-  height: min(77vh, 52rem);
-  transform: translate3d(
-    calc(-50% + var(--portrait-x)),
-    calc(var(--portrait-y) + var(--hero-portrait-scroll)),
-    0
-  );
-  transition: transform 0.8s var(--ease);
-  will-change: transform;
-  animation: portraitEnter 1.4s 0.7s var(--ease) both;
-}
 
 
 
-.hero__portrait {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  clip-path: inset(0);
-  animation: portraitClip 1.5s 0.72s var(--ease) both;
-}
 
 
-.hero__portrait img {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transform: scale(1.08);
-  transition: opacity 0.4s ease, transform 1.4s var(--ease), filter 0.8s ease;
-}
-
-.hero__portrait-layer:hover .hero__portrait img {
-  filter: saturate(0.82);
-  transform: scale(1.02);
-}
 
 
-@keyframes portraitEnter {
-  from {
-    opacity: 0;
-    transform: translate3d(calc(-50% + var(--portrait-x)), 7rem, 0);
-  }
-}
 
-@keyframes portraitClip {
-  from {
-    clip-path: inset(100% 0 0);
-  }
-}
+
+
 
 
 .hero__meta {
@@ -415,7 +357,7 @@
 .hero h1 {
   position: absolute;
   right: var(--pad);
-  bottom: 0.8rem;
+  bottom: 35vh;
   left: var(--pad);
   z-index: 3;
   display: block;
@@ -1189,11 +1131,6 @@ footer {
     object-position: center;
   }
 
-  .hero__portrait-layer {
-    top: 12%;
-    width: min(72vw, 22rem);
-    height: min(62vh, 35rem);
-  }
 
 
 
