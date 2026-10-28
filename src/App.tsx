@@ -24,8 +24,6 @@ const photographs = [
   { src: asset("photo8.jpg"), title: "Passing Through", className: "square" },
 ]
 
-const reelImages = photographs.slice(0, 5)
-
 const capabilities = [
   {
     title: "Web and programming",
@@ -91,7 +89,6 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [reelPlaying, setReelPlaying] = useState(true)
-  const [activeReel, setActiveReel] = useState(0)
   const cursorRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
   const reelRef = useRef<HTMLElement>(null)
@@ -125,17 +122,6 @@ export default function App() {
     }
   }, [])
 
-  useEffect(() => {
-    if (
-      !reelPlaying ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    )
-      return
-    const interval = window.setInterval(() => {
-      setActiveReel((current) => (current + 1) % reelImages.length)
-    }, 2800)
-    return () => window.clearInterval(interval)
-  }, [reelPlaying])
 
   useEffect(() => {
     if (!reelVideoRef.current) return
@@ -323,10 +309,6 @@ export default function App() {
 
       <section className="reel" id="reel" ref={reelRef}>
         <div className="reel__stage">
-          <div className="reel__fallback">
-            <span>Photography reel</span>
-            <small>A selection from the portfolio archive</small>
-          </div>
           <video
             ref={reelVideoRef}
             className="reel__video"
@@ -336,24 +318,7 @@ export default function App() {
             loop
             playsInline
             aria-label="Photography reel"
-            onError={(event) => (event.currentTarget.style.display = "none")}
           />
-          {reelImages.map((image, index) => (
-            <div
-              className={`reel__slide ${
-                index === activeReel ? "reel__slide--active" : ""
-              }`}
-              aria-hidden={index !== activeReel}
-              key={image.src}
-            >
-              <img
-                src={image.src}
-                alt={`${image.title} reel photograph`}
-                loading={index < 2 ? "eager" : "lazy"}
-                onError={(event) => (event.currentTarget.style.opacity = "0")}
-              />
-            </div>
-          ))}
           <div className="reel__wash" />
         </div>
         <div className="reel__top">
@@ -367,7 +332,7 @@ export default function App() {
           >
             {reelPlaying ? "Pause" : "Play"}
           </button>
-          <span>{reelImages[activeReel].title}</span>
+          <span>Now playing · video1.mp4</span>
           <a href="#work">Explore photographs ↓</a>
         </div>
       </section>
