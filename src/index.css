@@ -345,7 +345,7 @@
 .hero h1 {
   position: absolute;
   right: var(--pad);
-  bottom: calc(35vh - 65px);
+  bottom: calc(35vh - 135px);
   left: var(--pad);
   z-index: 3;
   display: block;
