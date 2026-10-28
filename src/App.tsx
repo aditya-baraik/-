@@ -14,14 +14,14 @@ const profile = {
 }
 
 const photographs = [
-  { src: asset("photo1.jpg"), title: "Stillness", className: "feature" },
-  { src: asset("photo2.jpg"), title: "Golden Hour", className: "portrait" },
-  { src: asset("photo3.jpg"), title: "In Motion", className: "portrait" },
-  { src: asset("photo4.jpg"), title: "Solitude", className: "landscape" },
-  { src: asset("photo5.jpg"), title: "The Everyday", className: "square" },
-  { src: asset("photo6.jpg"), title: "After Light", className: "tall" },
-  { src: asset("photo7.jpg"), title: "Somewhere Quiet", className: "wide" },
-  { src: asset("photo8.jpg"), title: "Passing Through", className: "square" },
+  { src: asset("media/image2.jpg"), title: "Stillness", className: "feature" },
+  { src: asset("media/image3.jpg"), title: "Golden Hour", className: "portrait" },
+  { src: asset("media/image4.jpg"), title: "In Motion", className: "portrait" },
+  { src: asset("media/image5.jpg"), title: "Solitude", className: "landscape" },
+  { src: asset("media/image6.jpg"), title: "The Everyday", className: "square" },
+  { src: asset("media/image7.jpg"), title: "After Light", className: "tall" },
+  { src: asset("media/image8.jpg"), title: "Somewhere Quiet", className: "wide" },
+  { src: asset("media/image9.jpg"), title: "Passing Through", className: "square" },
 ]
 
 const capabilities = [
@@ -278,7 +278,7 @@ export default function App() {
               <small>Image ready for upload</small>
             </div>
             <img
-              src={asset("photo1.jpg")}
+              src={asset("media/image1.jpg")}
               alt="Featured photograph"
               onError={(event) => (event.currentTarget.style.opacity = "0")}
             />
@@ -306,7 +306,7 @@ export default function App() {
           <video
             ref={reelVideoRef}
             className="reel__video"
-            src={asset("video1.mp4")}
+            src={asset("media/video1.mp4")}
             autoPlay
             muted
             loop
@@ -348,7 +348,7 @@ export default function App() {
           <span>Recent visual work</span>
         </div>
         <div className="gallery">
-          {photographs.map((photo) => (
+          {photographs.map((photo, index) => (
             <figure
               className={`photo-card photo-card--${photo.className}`}
               key={photo.src}
@@ -362,7 +362,7 @@ export default function App() {
                 <img
                   src={photo.src}
                   alt={`${photo.title} photograph`}
-                  loading={photo.src.endsWith("/photo1.jpg") ? "eager" : "lazy"}
+                  loading={index === 0 ? "eager" : "lazy"}
                   onError={(event) => (event.currentTarget.style.opacity = "0")}
                 />
                 <div className="photo-card__view">View image</div>
@@ -392,7 +392,7 @@ export default function App() {
             <small>Image ready for upload</small>
           </div>
           <img
-            src={asset("pp.png")}
+            src={asset("media/image10.png")}
             alt={`Portrait of ${profile.name}`}
             loading="lazy"
             onError={(event) => (event.currentTarget.style.opacity = "0")}
