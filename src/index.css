@@ -1387,6 +1387,124 @@ footer {
   }
 }
 
+/* Keep the desktop composition's proportions while letting mobile content
+   size itself from the viewport instead of inheriting desktop offsets. */
+@media (max-width: 800px) {
+  .hero {
+    height: 175dvh;
+    min-height: 0;
+  }
+
+  .hero__sticky {
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  .hero__meta {
+    bottom: clamp(8rem, 17vh, 11rem);
+  }
+
+  .hero h1 {
+    bottom: clamp(1.5rem, 7vh, 3.5rem);
+    font-size: clamp(2.35rem, 12.5vw, 5rem);
+  }
+
+  .hero__curtain {
+    display: block;
+  }
+
+  .hero__curtain-name {
+    top: clamp(5rem, 15vh, 9rem);
+    right: var(--pad);
+    left: var(--pad);
+    width: auto;
+    max-width: none;
+    font-size: clamp(2.8rem, 15.5vw, 6rem);
+    line-height: 0.88;
+    text-align: center;
+    overflow-wrap: normal;
+  }
+
+  .hero__curtain-foot {
+    bottom: clamp(1.25rem, 4vh, 2.5rem);
+  }
+
+  .reel {
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  .manifesto {
+    padding-top: clamp(4rem, 10vw, 8rem);
+    padding-bottom: clamp(5rem, 12vw, 9rem);
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 4rem);
+  }
+
+  .photo-card,
+  .photo-card:nth-child(even),
+  .photo-card:nth-child(3n) {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .gallery--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.75rem, 3vw, 1.25rem);
+    margin-top: clamp(2rem, 6vw, 3rem);
+    margin-bottom: clamp(2rem, 6vw, 3rem);
+  }
+
+  .about__portrait {
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .about__copy {
+    min-height: 0;
+    padding-top: clamp(2rem, 6vw, 4rem);
+    padding-bottom: clamp(3rem, 8vw, 5rem);
+  }
+
+  .about h2 {
+    margin-top: clamp(3rem, 10vw, 7rem);
+  }
+
+  .about__body {
+    margin-top: clamp(3rem, 8vw, 5rem);
+  }
+
+  .capabilities,
+  .projects,
+  .experience,
+  .contact {
+    padding-top: clamp(4rem, 10vw, 8rem);
+    padding-bottom: clamp(5rem, 12vw, 9rem);
+  }
+
+  .capability ul {
+    margin-top: clamp(2rem, 7vw, 4rem);
+  }
+
+  .experience__layout {
+    padding-top: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .contact__link {
+    font-size: clamp(3rem, 15vw, 6.5rem);
+  }
+
+  .footer__wordmark {
+    margin-top: clamp(5rem, 12vw, 8rem);
+    font-size: clamp(3.4rem, 16vw, 8rem);
+  }
+}
+
 @media (max-width: 420px) {
   .section-label {
     align-items: flex-start;
