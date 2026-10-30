@@ -1534,6 +1534,238 @@ footer {
   }
 }
 
+/* Section-by-section responsive pass. These rules preserve the desktop
+   relationships while removing the accidental stacking and excess rhythm
+   caused by the original one-size mobile overrides. */
+@media (max-width: 800px) {
+  .site-header {
+    min-height: 4.25rem;
+    padding-right: var(--pad);
+    padding-left: var(--pad);
+  }
+
+  .menu-panel {
+    padding-top: calc(5.5rem + env(safe-area-inset-top));
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  }
+
+  .menu-panel nav {
+    gap: clamp(0.2rem, 1vw, 0.75rem);
+  }
+
+  .menu-panel nav a {
+    min-height: 2.75rem;
+    padding: 0.12em 0;
+    font-size: clamp(2.75rem, 13vw, 5.25rem);
+  }
+
+  .hero__media,
+  .hero__curtain {
+    contain: paint;
+  }
+
+  .hero__media img {
+    object-position: 52% center;
+  }
+
+  .hero__shade {
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.34), transparent 42%, rgba(0, 0, 0, 0.48)),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.26), transparent 72%);
+  }
+
+  .hero__meta {
+    font-size: clamp(0.68rem, 2.2vw, 0.85rem);
+  }
+
+  .hero__curtain-foot {
+    display: flex;
+    justify-content: space-between;
+    font-size: clamp(0.62rem, 1.8vw, 0.75rem);
+  }
+
+  .reel__video {
+    object-position: 50% 50%;
+  }
+
+  .reel__bottom {
+    align-items: center;
+  }
+
+  .reel__bottom button,
+  .reel__bottom a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+  }
+
+  .section-label {
+    min-height: 2.5rem;
+    align-items: center;
+    gap: 1rem;
+    line-height: 1.25;
+  }
+
+  .section-label span:last-child {
+    max-width: 55%;
+  }
+
+  .manifesto__text {
+    max-width: 18em;
+    font-size: clamp(1.95rem, 8.6vw, 3.8rem);
+  }
+
+  .work__heading {
+    gap: 1rem;
+  }
+
+  .work__heading h2 {
+    font-size: clamp(1.85rem, 8vw, 3.8rem);
+  }
+
+  .gallery {
+    row-gap: clamp(2.5rem, 8vw, 5rem);
+  }
+
+  .gallery--pair {
+    align-items: start;
+  }
+
+  .photo-card figcaption {
+    gap: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .photo-card figcaption span:last-child {
+    text-align: right;
+  }
+
+  .marquee {
+    padding-top: clamp(1.5rem, 5vw, 2.5rem);
+    padding-bottom: clamp(1.75rem, 6vw, 3rem);
+  }
+
+  .marquee__track {
+    gap: clamp(2.5rem, 9vw, 6rem);
+    animation-duration: 30s;
+  }
+
+  .marquee span {
+    font-size: clamp(2.6rem, 13vw, 5.5rem);
+  }
+
+  .about__copy {
+    display: block;
+  }
+
+  .about h2 {
+    max-width: 13em;
+    font-size: clamp(2.25rem, 8.5vw, 4.5rem);
+  }
+
+  .about__body {
+    max-width: 36rem;
+    gap: clamp(1.25rem, 4vw, 2rem);
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
+  }
+
+  .capabilities__intro {
+    padding-top: clamp(2.5rem, 7vw, 5rem);
+    padding-bottom: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .capabilities__intro h2 {
+    font-size: clamp(2.25rem, 8.5vw, 5rem);
+  }
+
+  .capability h3 {
+    max-width: 11em;
+    font-size: clamp(1.65rem, 6vw, 3rem);
+  }
+
+  .project-row {
+    column-gap: clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  .project-row__main strong {
+    font-size: clamp(1.7rem, 7vw, 3.8rem);
+  }
+
+  .project-row__main small {
+    max-width: 42rem;
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
+  }
+
+  .experience__heading h2 {
+    max-width: 13em;
+    font-size: clamp(2.35rem, 8.8vw, 5rem);
+  }
+
+  .experience__items h3 {
+    font-size: clamp(1.55rem, 6vw, 3rem);
+  }
+
+  .experience__items span,
+  .experience__items article > p:last-child {
+    font-size: clamp(0.88rem, 2.1vw, 1rem);
+  }
+
+  .contact__link {
+    max-width: 100%;
+    font-size: clamp(2.8rem, 14vw, 6.5rem);
+  }
+
+  .footer__top {
+    row-gap: clamp(2rem, 7vw, 4rem);
+  }
+
+  .footer__bottom {
+    line-height: 1.4;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .about {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .about__portrait {
+    min-height: 100%;
+  }
+
+  .about__copy {
+    min-height: 100%;
+  }
+
+  .about__body {
+    grid-template-columns: 1fr;
+  }
+
+  .capabilities__intro {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .capabilities__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .capability:last-child {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--line);
+    border-right: 0;
+  }
+
+  .experience__layout {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .experience__items article {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
