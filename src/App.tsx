@@ -90,7 +90,9 @@ function Arrow() {
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)
-  const [reelPlaying, setReelPlaying] = useState(true)
+  const [reelPlaying, setReelPlaying] = useState(
+    () => !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  )
   const [aboutAlternateActive, setAboutAlternateActive] = useState(false)
   const [aboutPointerHovering, setAboutPointerHovering] = useState(false)
   const [image8FrameIndex, setImage8FrameIndex] = useState(0)
@@ -102,18 +104,21 @@ export default function App() {
   useEffect(() => {
     const timer = window.setTimeout(() => setLoaded(true), 900)
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]")
-    const observer = new IntersectionObserver(
+    if (!("IntersectionObserver" in window)) {
+      elements.forEach((element) => element.classList.add("is-visible"))
+    }
+    const observer = "IntersectionObserver" in window ? new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible")
-            observer.unobserve(entry.target)
+            observer?.unobserve(entry.target)
           }
         })
       },
       { threshold: 0.12 },
-    )
-    elements.forEach((element) => observer.observe(element))
+    ) : null
+    elements.forEach((element) => observer?.observe(element))
 
     const moveCursor = (event: PointerEvent) => {
       if (!cursorRef.current) return
@@ -122,7 +127,7 @@ export default function App() {
     window.addEventListener("pointermove", moveCursor)
     return () => {
       window.clearTimeout(timer)
-      observer.disconnect()
+      observer?.disconnect()
       window.removeEventListener("pointermove", moveCursor)
     }
   }, [])
@@ -139,6 +144,7 @@ export default function App() {
 
   useEffect(() => {
     if (image8Frames.length < 2) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
     const timer = window.setInterval(() => {
       setImage8FrameIndex((index) => (index + 1) % image8Frames.length)
     }, 4000)
@@ -173,11 +179,11 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
-
     let frame = 0
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
     const updateDepth = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse" || reduceMotion.matches) return
       if (!reelRef.current) return
       window.cancelAnimationFrame(frame)
       frame = window.requestAnimationFrame(() => {
@@ -193,26 +199,23 @@ export default function App() {
 
     const updateScroll = () => {
       if (!heroRef.current) return
-      const distance = Math.max(
-        heroRef.current.offsetHeight - window.innerHeight,
-        1,
-      )
-      const curtainProgress = Math.min(
-        Math.max(window.scrollY / distance, 0),
-        1,
-      )
-      const progress = Math.min(window.scrollY, window.innerHeight)
+      const hero = heroRef.current
+      const sticky = hero.querySelector<HTMLElement>(".hero__sticky")
+      const distance = Math.max(hero.offsetHeight - (sticky?.offsetHeight ?? window.innerHeight), 1)
+      const localScroll = Math.max(-hero.getBoundingClientRect().top, 0)
+      const curtainProgress = Math.min(localScroll / distance, 1)
+      const progress = Math.min(localScroll, sticky?.offsetHeight ?? window.innerHeight)
       heroRef.current.style.setProperty(
         "--hero-media-y",
-        `${progress * 0.055}px`,
+        reduceMotion.matches ? "0px" : `${progress * 0.055}px`,
       )
       heroRef.current.style.setProperty(
         "--hero-title-y",
-        `${progress * 0.045}px`,
+        reduceMotion.matches ? "0px" : `${progress * 0.045}px`,
       )
       heroRef.current.style.setProperty(
         "--curtain-y",
-        `${curtainProgress * -104}vh`,
+        `${curtainProgress * -100}%`,
       )
       heroRef.current.style.setProperty(
         "--curtain-fold",
@@ -220,20 +223,28 @@ export default function App() {
       )
     }
 
-    window.addEventListener("pointermove", updateDepth)
+    window.addEventListener("pointermove", updateDepth, { passive: true })
     window.addEventListener("scroll", updateScroll, { passive: true })
+    window.addEventListener("resize", updateScroll, { passive: true })
     updateScroll()
     return () => {
       window.cancelAnimationFrame(frame)
       window.removeEventListener("pointermove", updateDepth)
       window.removeEventListener("scroll", updateScroll)
+      window.removeEventListener("resize", updateScroll)
     }
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : ""
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = menuOpen ? "hidden" : previousOverflow
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false)
+    }
+    if (menuOpen) window.addEventListener("keydown", closeOnEscape)
     return () => {
-      document.body.style.overflow = ""
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener("keydown", closeOnEscape)
     }
   }, [menuOpen])
 
@@ -389,7 +400,8 @@ export default function App() {
             ref={reelVideoRef}
             className="reel__video"
             src={asset("media/video1.mp4")}
-            autoPlay
+            autoPlay={reelPlaying}
+            preload="metadata"
             muted
             loop
             playsInline
@@ -402,6 +414,8 @@ export default function App() {
           <button
             type="button"
             onClick={() => setReelPlaying((playing) => !playing)}
+            aria-label={reelPlaying ? "Pause photography reel" : "Play photography reel"}
+            aria-pressed={reelPlaying}
           >
             {reelPlaying ? "Pause" : "Play"}
           </button>

@@ -31,6 +31,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
@@ -47,6 +48,12 @@
 
   a {
     text-decoration: none;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--acid);
+    outline-offset: 4px;
   }
 
   ::selection {
@@ -743,6 +750,7 @@
   width: max-content;
   gap: clamp(7rem, 12vw, 14rem);
   animation: marquee 24s linear infinite;
+  will-change: transform;
 }
 
 .marquee span {
@@ -1110,16 +1118,20 @@ footer {
 
   .site-header {
     grid-template-columns: 1fr 1fr;
-    padding-top: 1rem;
+    padding-top: calc(1rem + env(safe-area-inset-top));
     font-size: 0.8rem;
   }
 
   .menu-toggle {
     display: block;
     justify-self: end;
+    min-width: 5rem;
+    min-height: 2.75rem;
     padding: 0.55rem 0.85rem;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 999px;
+    color: inherit;
+    background: transparent;
   }
 
   .hero {
@@ -1139,7 +1151,7 @@ footer {
 
   .hero__meta {
     top: auto;
-    bottom: 8rem;
+    bottom: clamp(10rem, 20vh, 12rem);
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -1150,6 +1162,7 @@ footer {
   }
 
   .hero h1 {
+    bottom: clamp(2rem, 8vh, 4rem);
     font-size: clamp(2.7rem, 13.8vw, 5.5rem);
     line-height: 0.82;
   }
@@ -1332,14 +1345,45 @@ footer {
 
   .footer__wordmark {
     margin-top: 8rem;
+    font-size: clamp(3.4rem, 17.5vw, 18rem);
   }
 
   .footer__bottom {
     gap: 1rem;
+    flex-wrap: wrap;
   }
 
   .footer__bottom span:nth-child(2) {
     display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-label {
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .section-label span:last-child {
+    text-align: right;
+  }
+
+  .work__heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .gallery--pair {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__link {
+    font-size: clamp(3.2rem, 16vw, 4.2rem);
+  }
+
+  .footer__bottom {
+    font-size: 0.65rem;
   }
 }
 
@@ -1359,5 +1403,28 @@ footer {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  .hero__curtain {
+    display: none;
+  }
+
+  .marquee__track {
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.5rem;
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .marquee span {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    line-height: 1;
+  }
+
+  .marquee span:nth-child(n + 3) {
+    display: none;
   }
 }
