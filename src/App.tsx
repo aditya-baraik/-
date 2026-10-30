@@ -353,6 +353,8 @@ export default function App() {
       <div
         id="mobile-menu"
         className={`menu-panel ${menuOpen ? "menu-panel--open" : ""}`}
+        aria-hidden={!menuOpen}
+        inert={!menuOpen}
       >
         <p className="menu-panel__eyebrow">Navigate</p>
         <nav aria-label="Mobile navigation">

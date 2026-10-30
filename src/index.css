@@ -22,6 +22,17 @@
   -webkit-font-smoothing: auto;
 }
 
+@supports not (height: 100dvh) {
+  .hero__sticky,
+  .reel {
+    height: 100svh;
+  }
+
+  .hero {
+    height: 175svh;
+  }
+}
+
 .name-spacing,
 .loader span.name-spacing,
 .hero__curtain-name.name-spacing,
@@ -392,7 +403,7 @@
   display: block;
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(1.75rem, 9.25vw, 10rem);
+  font-size: clamp(1.75rem, 6.8vw, 10rem);
   font-weight: 800;
   line-height: 0.82;
   letter-spacing: -0.075em;
@@ -463,7 +474,7 @@
   right: 1.4vw;
   left: 1.4vw;
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(3rem, 9.25vw, 10rem);
+  font-size: clamp(1.75rem, 6.8vw, 10rem);
   font-weight: 800;
   line-height: 0.82;
   letter-spacing: -0.075em;
@@ -643,6 +654,15 @@
   gap: clamp(3rem, 8vw, 9rem) 1.25rem;
 }
 
+.gallery > *,
+.about > *,
+.introduction > *,
+.capabilities__grid > *,
+.projects__list > *,
+.experience__layout > * {
+  min-width: 0;
+}
+
 .photo-card {
   grid-column: span 6;
   margin: 0;
@@ -813,6 +833,7 @@
   gap: clamp(7rem, 12vw, 14rem);
   animation: marquee 24s linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .marquee span {
