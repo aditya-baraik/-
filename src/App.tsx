@@ -236,6 +236,7 @@ export default function App() {
     window.addEventListener("pointermove", updateDepth, { passive: true })
     window.addEventListener("scroll", updateScroll, { passive: true })
     window.addEventListener("resize", updateScroll, { passive: true })
+    reduceMotion.addEventListener("change", updateScroll)
     updateScroll()
     return () => {
       window.cancelAnimationFrame(frame)
@@ -243,6 +244,7 @@ export default function App() {
       window.removeEventListener("pointermove", updateDepth)
       window.removeEventListener("scroll", updateScroll)
       window.removeEventListener("resize", updateScroll)
+      reduceMotion.removeEventListener("change", updateScroll)
     }
   }, [])
 
