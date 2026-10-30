@@ -16,14 +16,14 @@ const profile = {
 }
 
 const photographs = [
-  { src: asset("media/image2.webp"), title: "Stillness", className: "feature" },
-  { src: asset("media/image3.webp"), title: "Golden Hour", className: "portrait" },
-  { src: asset("media/image4.webp"), title: "In Motion", className: "portrait" },
-  { src: asset("media/image5.webp"), title: "Solitude", className: "landscape" },
-  { src: asset("media/image6.webp"), title: "The Everyday", className: "square" },
-  { src: asset("media/image7.webp"), title: "After Light", className: "tall" },
-  { src: asset("media/image8.webp"), title: "Somewhere Quiet", className: "wide" },
-  { src: asset("media/image9.webp"), title: "Passing Through", className: "square" },
+  { src: asset("media/image2.webp"), label: "stillness", labelPosition: "center", className: "feature", alt: "Stillness photograph" },
+  { src: asset("media/image3.webp"), label: "golden-hour", labelPosition: "bottom", className: "portrait", alt: "Golden hour photograph" },
+  { src: asset("media/image4.webp"), label: "chaos", labelPosition: "bottom", className: "portrait", alt: "Abstract motion photograph" },
+  { src: asset("media/image5.webp"), caption: "Solitude", className: "landscape", alt: "Solitude photograph" },
+  { src: asset("media/image6.webp"), className: "square", alt: "Everyday life photograph" },
+  { src: asset("media/image7.webp"), className: "tall", alt: "After light photograph" },
+  { src: asset("media/image8.webp"), label: "Frames", labelPosition: "bottom", className: "wide", alt: "Frames photograph", animated: true },
+  { src: asset("media/image9.webp"), label: "admire", labelPosition: "bottom", className: "square", alt: "Passing through photograph" },
 ]
 
 const capabilities = [
@@ -270,34 +270,36 @@ export default function App() {
     >
       <div className="photo-card__frame">
         <div className="image-fallback">
-          <span>{photo.title}</span>
+          <span>{photo.label ?? photo.caption ?? "Visual story"}</span>
           <small>Image ready for upload</small>
         </div>
         <img
           key={
-            photo.title === "Somewhere Quiet"
+            photo.animated
               ? image8Frames[image8FrameIndex]
               : photo.src
           }
           className={
-            photo.title === "Somewhere Quiet" ? "photo-card__image8" : undefined
+            photo.animated ? "photo-card__image8" : undefined
           }
           src={
-            photo.title === "Somewhere Quiet"
+            photo.animated
               ? asset(`media/${image8Frames[image8FrameIndex]}`)
               : photo.src
           }
-          alt={`${photo.title} photograph`}
+          alt={photo.alt}
           loading={index === 0 ? "eager" : "lazy"}
           decoding="async"
           onError={(event) => (event.currentTarget.style.opacity = "0")}
         />
+        {photo.label ? (
+          <span className={`photo-card__label photo-card__label--${photo.labelPosition}`}>
+            {photo.label}
+          </span>
+        ) : null}
         <div className="photo-card__view">View image</div>
       </div>
-      <figcaption>
-        <span>{photo.title}</span>
-        <span>Photography and editing</span>
-      </figcaption>
+      {photo.caption ? <figcaption><span>{photo.caption}</span></figcaption> : null}
     </figure>
   )
 
@@ -368,7 +370,6 @@ export default function App() {
           </a>
         </nav>
         <div className="menu-panel__foot">
-          <span>{profile.location}</span>
           <a href={`mailto:${profile.email}`}>Email</a>
         </div>
       </div>
@@ -392,17 +393,13 @@ export default function App() {
           </div>
           <div className="hero__meta">
             <p>{profile.role}</p>
-            <p>Based in {profile.location}</p>
             <span className="hero__polymath">Polymath</span>
           </div>
           <h1 aria-label={profile.name}>
             <span className="name-spacing">{profile.name}</span>
           </h1>
           <div className="hero__curtain" aria-hidden="true">
-            <div className="hero__curtain-name name-spacing">{profile.name}</div>
-            <div className="hero__curtain-foot">
-              <span>Design Photography Technology</span>
-            </div>
+          <div className="hero__curtain-name name-spacing">{profile.name}</div>
           </div>
         </div>
       </section>
@@ -432,29 +429,43 @@ export default function App() {
           >
             {reelPlaying ? "Pause" : "Play"}
           </button>
-          <span>Now playing · video1.mp4</span>
           <a href="#work">Explore photographs ↓</a>
         </div>
       </section>
 
-      <section className="manifesto section-pad">
-        <div className="section-label" data-reveal>
-          <span>Introduction</span>
-          <span>Design Photography Technology</span>
+      <section className="manifesto introduction" id="introduction">
+        <div className="introduction__copy section-pad">
+          <div className="section-label" data-reveal>
+            <span>Introduction</span>
+          </div>
+          <p className="manifesto__text" data-reveal>
+            I bring design photography storytelling and technology together to
+            turn thoughtful ideas into memorable visual experiences
+          </p>
+          <a className="pill text-link hover-line" href="#about" data-reveal>
+            More about me <Arrow />
+          </a>
         </div>
-        <p className="manifesto__text" data-reveal>
-          I bring design photography storytelling and technology together to
-          turn thoughtful ideas into memorable visual experiences
-        </p>
-        <a className="pill text-link hover-line" href="#about" data-reveal>
-          More about me <Arrow />
-        </a>
+        <figure className="introduction__portrait" data-reveal>
+          <div className="image-fallback image-fallback--light">
+            <span>Introduction</span>
+            <small>Image ready for upload</small>
+          </div>
+          <img
+            src={asset("media/image11.jpg")}
+            alt="Introduction visual"
+            loading="lazy"
+            decoding="async"
+            onError={(event) => {
+              event.currentTarget.src = asset("media/image10.webp")
+            }}
+          />
+        </figure>
       </section>
 
       <section className="work section-pad" id="work">
         <div className="work__heading" data-reveal>
-          <h2>Selected photographs</h2>
-          <span>Recent visual work</span>
+          <h2>Visual Stories</h2>
         </div>
         <div className="gallery">
           {photographs.slice(0, 4).map((photo, index) =>
@@ -520,7 +531,6 @@ export default function App() {
         <div className="about__copy">
           <div className="section-label section-label--dark" data-reveal>
             <span>About me</span>
-            <span>Curious by nature</span>
           </div>
           <h2 data-reveal>
             Always learning and always looking for new ways to create
@@ -598,7 +608,6 @@ export default function App() {
       <section className="experience section-pad" id="experience">
         <div className="section-label section-label--dark" data-reveal>
           <span>Experience and education</span>
-          <span>{profile.location}</span>
         </div>
         <div className="experience__layout">
           <div className="experience__heading" data-reveal>
@@ -640,7 +649,6 @@ export default function App() {
       <section className="contact section-pad">
         <div className="section-label" data-reveal>
           <span>Have an idea in mind</span>
-          <span>Available for select projects</span>
         </div>
         <a
           className="contact__link"
@@ -654,7 +662,6 @@ export default function App() {
 
       <footer id="contact">
         <div className="footer__top">
-          <p className="name-spacing">{profile.name}</p>
           <div>
             <a className="hover-line" href="#top">
               Back to top ↑
@@ -703,7 +710,6 @@ export default function App() {
         </div>
         <div className="footer__bottom">
           <span>Copyright {new Date().getFullYear()}</span>
-          <span>Based in {profile.location}</span>
           <span>All photographs reserved</span>
         </div>
       </footer>
