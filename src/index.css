@@ -29,14 +29,22 @@
 }
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
+    overflow-x: hidden;
   }
 
   body {
     margin: 0;
     min-width: 320px;
+    max-width: 100%;
     overflow-x: hidden;
     background: var(--paper);
   }
@@ -128,6 +136,12 @@
   height: 100%;
   border-radius: 999px;
   background: white;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
 }
 
 .site-header {
@@ -1125,7 +1139,7 @@ footer {
   .menu-toggle {
     display: block;
     justify-self: end;
-    min-width: 5rem;
+    min-width: 5.5rem;
     min-height: 2.75rem;
     padding: 0.55rem 0.85rem;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -1176,6 +1190,7 @@ footer {
     line-height: 0.83;
     text-align: left;
     white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .hero__curtain-foot {
@@ -1196,6 +1211,7 @@ footer {
   .reel__bottom {
     bottom: 1rem;
     grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 
   .reel__bottom > span {

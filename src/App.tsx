@@ -121,7 +121,7 @@ export default function App() {
     elements.forEach((element) => observer?.observe(element))
 
     const moveCursor = (event: PointerEvent) => {
-      if (!cursorRef.current) return
+      if (event.pointerType !== "mouse" || !cursorRef.current) return
       cursorRef.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`
     }
     window.addEventListener("pointermove", moveCursor)
@@ -180,6 +180,7 @@ export default function App() {
 
   useEffect(() => {
     let frame = 0
+    let scrollFrame = 0
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
     const updateDepth = (event: PointerEvent) => {
@@ -198,13 +199,22 @@ export default function App() {
     }
 
     const updateScroll = () => {
+      if (scrollFrame) return
+      scrollFrame = window.requestAnimationFrame(() => {
+        scrollFrame = 0
+        updateScrollState()
+      })
+    }
+
+    const updateScrollState = () => {
       if (!heroRef.current) return
       const hero = heroRef.current
       const sticky = hero.querySelector<HTMLElement>(".hero__sticky")
-      const distance = Math.max(hero.offsetHeight - (sticky?.offsetHeight ?? window.innerHeight), 1)
-      const localScroll = Math.max(-hero.getBoundingClientRect().top, 0)
-      const curtainProgress = Math.min(localScroll / distance, 1)
-      const progress = Math.min(localScroll, sticky?.offsetHeight ?? window.innerHeight)
+      const stickyHeight = sticky?.getBoundingClientRect().height ?? window.innerHeight
+      const distance = Math.max(hero.getBoundingClientRect().height - stickyHeight, 1)
+      const localScroll = Math.min(Math.max(-hero.getBoundingClientRect().top, 0), distance)
+      const curtainProgress = localScroll / distance
+      const progress = Math.min(localScroll, stickyHeight)
       heroRef.current.style.setProperty(
         "--hero-media-y",
         reduceMotion.matches ? "0px" : `${progress * 0.055}px`,
@@ -229,6 +239,7 @@ export default function App() {
     updateScroll()
     return () => {
       window.cancelAnimationFrame(frame)
+      window.cancelAnimationFrame(scrollFrame)
       window.removeEventListener("pointermove", updateDepth)
       window.removeEventListener("scroll", updateScroll)
       window.removeEventListener("resize", updateScroll)
