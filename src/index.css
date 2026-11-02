@@ -1869,7 +1869,40 @@ footer {
 }
 
 @media (max-width: 800px) {
-  .gallery > .photo-card {
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1.25rem, 4vw, 2.5rem) clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .gallery > .photo-card--feature,
+  .gallery > .photo-card--wide {
+    grid-column: 1 / -1;
+  }
+
+  .gallery > .photo-card--portrait {
+    grid-column: span 6;
+  }
+
+  .gallery > .photo-card--landscape {
+    grid-column: 3 / span 8;
+  }
+
+  .gallery > .photo-card--square {
+    grid-column: 2 / span 5;
+  }
+
+  .gallery > .photo-card--tall {
+    grid-column: 7 / span 5;
+  }
+
+  .gallery--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .gallery--pair > .photo-card:first-child,
+  .gallery--pair > .photo-card:nth-child(2) {
     grid-column: auto;
   }
 
