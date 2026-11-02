@@ -31,6 +31,7 @@ const photographs = [
   { src: asset("media/image7.webp"), className: "tall", alt: "After light photograph" },
   { src: asset("media/image8.webp"), label: "Frames", labelPosition: "bottom", className: "wide", alt: "Frames photograph", animated: true },
   { src: asset("media/image9.webp"), label: "admire", labelPosition: "bottom", className: "square", alt: "Passing through photograph" },
+  { src: asset("media/image11.jpg"), label: "daylight", labelPosition: "bottom", className: "wide", alt: "Daylight photograph" },
 ]
 
 const capabilities = [
@@ -233,7 +234,7 @@ export default function App() {
       )
       heroRef.current.style.setProperty(
         "--curtain-y",
-        `${curtainProgress * -100}%`,
+        `${curtainProgress * -110}%`,
       )
       heroRef.current.style.setProperty(
         "--curtain-fold",
@@ -530,7 +531,7 @@ export default function App() {
             <small>Image ready for upload</small>
           </div>
           <img
-            src={asset("media/image10.webp")}
+            src={asset("media/image10.jpg")}
             alt={`Portrait of ${profile.name}`}
             loading="lazy"
             decoding="async"
@@ -594,8 +595,8 @@ export default function App() {
           <img
             src={asset(
               aboutAlternateActive || aboutPointerHovering
-                ? "media/image10.1.webp"
-                : "media/image10.webp",
+                ? "media/image10.1.jpg"
+                : "media/image10.jpg",
             )}
             alt={`${aboutAlternateActive || aboutPointerHovering ? "Alternate portrait" : "Portrait"} of ${profile.name}`}
             loading="lazy"
@@ -772,9 +773,7 @@ export default function App() {
             </a>
             <a
               className="hover-line"
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
-              target="_blank"
-              rel="noreferrer"
+              href={`mailto:${profile.email}`}
             >
               Email <Arrow />
             </a>
