@@ -31,7 +31,6 @@ const photographs = [
   { src: asset("media/image7.webp"), className: "tall", alt: "After light photograph" },
   { src: asset("media/image8.webp"), label: "Frames", labelPosition: "bottom", className: "wide", alt: "Frames photograph", animated: true },
   { src: asset("media/image9.webp"), label: "admire", labelPosition: "bottom", className: "square", alt: "Passing through photograph" },
-  { src: asset("media/image11.jpg"), label: "daylight", labelPosition: "bottom", className: "wide", alt: "Daylight photograph" },
 ]
 
 const capabilities = [
@@ -531,7 +530,7 @@ export default function App() {
             <small>Image ready for upload</small>
           </div>
           <img
-            src={asset("media/image10.jpg")}
+            src={asset("media/image11.jpg")}
             alt={`Portrait of ${profile.name}`}
             loading="lazy"
             decoding="async"
