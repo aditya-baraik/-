@@ -1999,21 +1999,21 @@ footer {
 
   .about {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
     align-items: start;
     min-height: 0;
   }
 
   .about__copy {
-    grid-column: 1;
+    grid-column: 2;
     grid-row: 1;
     text-align: left;
   }
 
   .about__portrait {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
-    margin-top: clamp(2rem, 8vw, 4rem);
+    margin-top: clamp(9rem, 28vw, 13rem);
     aspect-ratio: 4 / 5;
   }
 
