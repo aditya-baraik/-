@@ -50,14 +50,12 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
-    overflow-x: hidden;
   }
 
   body {
     margin: 0;
-    min-width: 320px;
+    min-width: 280px;
     max-width: 100%;
-    overflow-x: hidden;
     background: var(--paper);
   }
 
@@ -1871,12 +1869,18 @@ footer {
 }
 
 @media (max-width: 800px) {
+  .gallery > .photo-card {
+    grid-column: auto;
+  }
+
   .hero h1,
+  .hero h1 span,
   .hero__curtain-name {
     max-width: none;
-    font-size: clamp(1rem, 7vw, 5rem);
-    letter-spacing: -0.085em;
-    white-space: nowrap;
+    font-size: clamp(1.5rem, 8.8vw, 4.5rem);
+    letter-spacing: -0.075em;
+    white-space: normal;
+    text-wrap: balance;
   }
 
   .hero h1 {

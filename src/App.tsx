@@ -100,6 +100,9 @@ export default function App() {
   const heroRef = useRef<HTMLElement>(null)
   const reelRef = useRef<HTMLElement>(null)
   const reelVideoRef = useRef<HTMLVideoElement>(null)
+  const menuToggleRef = useRef<HTMLButtonElement>(null)
+  const menuPanelRef = useRef<HTMLDivElement>(null)
+  const wasMenuOpen = useRef(false)
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoaded(true), 900)
@@ -155,7 +158,7 @@ export default function App() {
     const carousel = document.querySelector(".work-tail")
     if (!carousel) return
     const preloadFrames = () => {
-      image8Frames.forEach((frame) => {
+      image8Frames.slice(0, 2).forEach((frame) => {
         const image = new Image()
         image.decoding = "async"
         image.src = asset(`media/${frame}`)
@@ -251,13 +254,41 @@ export default function App() {
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = menuOpen ? "hidden" : previousOverflow
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false)
+    const focusableItems = menuPanelRef.current?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    )
+    const firstFocusable = focusableItems?.[0]
+    const lastFocusable = focusableItems?.[focusableItems.length - 1]
+
+    if (menuOpen) {
+      firstFocusable?.focus()
+    } else if (wasMenuOpen.current) {
+      menuToggleRef.current?.focus()
     }
-    if (menuOpen) window.addEventListener("keydown", closeOnEscape)
+    wasMenuOpen.current = menuOpen
+
+    const handleMenuKeydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false)
+        menuToggleRef.current?.focus()
+        return
+      }
+      if (event.key !== "Tab" || !menuOpen || !firstFocusable || !lastFocusable) {
+        return
+      }
+      if (event.shiftKey && document.activeElement === firstFocusable) {
+        event.preventDefault()
+        lastFocusable.focus()
+      } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+        event.preventDefault()
+        firstFocusable.focus()
+      }
+    }
+
+    if (menuOpen) window.addEventListener("keydown", handleMenuKeydown)
     return () => {
       document.body.style.overflow = previousOverflow
-      window.removeEventListener("keydown", closeOnEscape)
+      window.removeEventListener("keydown", handleMenuKeydown)
     }
   }, [menuOpen])
 
@@ -341,6 +372,7 @@ export default function App() {
         </a>
         <button
           className="menu-toggle"
+          ref={menuToggleRef}
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
           aria-expanded={menuOpen}
@@ -352,6 +384,7 @@ export default function App() {
 
       <div
         id="mobile-menu"
+        ref={menuPanelRef}
         className={`menu-panel ${menuOpen ? "menu-panel--open" : ""}`}
         aria-hidden={!menuOpen}
         inert={!menuOpen}
@@ -384,7 +417,11 @@ export default function App() {
               <small>Image ready for upload</small>
             </div>
             <img
-              src={asset("media/image1.webp")}
+              src={asset("media/image1-1280.webp")}
+              srcSet={`${asset("media/image1-640.webp")} 640w, ${asset("media/image1-1280.webp")} 1280w, ${asset("media/image1-1920.webp")} 1920w`}
+              sizes="100vw"
+              width={2700}
+              height={1519}
               alt="Featured photograph"
               loading="eager"
               fetchPriority="high"
@@ -454,13 +491,10 @@ export default function App() {
             <small>Image ready for upload</small>
           </div>
           <img
-            src={asset("media/image11.jpg")}
-            alt="Introduction visual"
+            src={asset("media/image10.webp")}
+            alt={`Portrait of ${profile.name}`}
             loading="lazy"
             decoding="async"
-            onError={(event) => {
-              event.currentTarget.src = asset("media/image10.webp")
-            }}
           />
         </figure>
       </section>
@@ -504,7 +538,7 @@ export default function App() {
           type="button"
           className="about__portrait"
           data-reveal
-          aria-label="About portrait image frame 10; tap to switch between image10.png and image10.1.jpg"
+          aria-label="Switch between the black-and-white and warm-toned portrait versions"
           aria-pressed={aboutAlternateActive}
           onClick={() => setAboutAlternateActive((active) => !active)}
           onPointerEnter={(event) => {
