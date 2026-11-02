@@ -2005,16 +2005,36 @@ footer {
   }
 
   .about__copy {
-    grid-column: 2;
-    grid-row: 1;
+    display: contents;
     text-align: left;
+  }
+
+  .about .section-label {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .about h2 {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   .about__portrait {
     grid-column: 1;
-    grid-row: 1;
-    margin-top: clamp(9rem, 28vw, 13rem);
+    grid-row: 3;
+    margin-top: 0;
     aspect-ratio: 4 / 5;
+  }
+
+  .about__body {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 0;
+  }
+
+  .about .pill {
+    grid-column: 2;
+    grid-row: 4;
   }
 
   .about h2 {
@@ -2025,7 +2045,7 @@ footer {
   .about__body {
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
-    margin-top: clamp(1rem, 4vw, 1.5rem);
+    margin-top: 0;
     padding-top: 0;
     font-size: clamp(0.85rem, 3.5vw, 0.95rem);
   }
