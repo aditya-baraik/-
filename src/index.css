@@ -1951,6 +1951,72 @@ footer {
   }
 }
 
+@media (max-width: 600px) {
+  .hero__media img {
+    object-position: left center;
+  }
+
+  .introduction {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    min-height: 0;
+    padding-block: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  .introduction__copy {
+    padding: 1rem var(--pad);
+  }
+
+  .introduction__copy .manifesto__text {
+    font-size: clamp(1.2rem, 5vw, 1.55rem);
+    line-height: 1.05;
+  }
+
+  .introduction__portrait {
+    align-self: center;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .about {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: start;
+    min-height: 0;
+  }
+
+  .about__portrait {
+    align-self: start;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .about__copy {
+    min-width: 0;
+    padding: var(--pad);
+  }
+
+  .about h2 {
+    margin-top: clamp(1rem, 4vw, 1.5rem);
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+  }
+
+  .about__body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-top: clamp(1rem, 4vw, 1.5rem);
+    padding-top: 0;
+    font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+  }
+
+  .about .pill {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
