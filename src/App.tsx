@@ -104,6 +104,7 @@ export default function App() {
   const [image8FrameIndex, setImage8FrameIndex] = useState(0)
   const cursorRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
+  const curtainDismissedRef = useRef(false)
   const reelRef = useRef<HTMLElement>(null)
   const reelVideoRef = useRef<HTMLVideoElement>(null)
   const menuToggleRef = useRef<HTMLButtonElement>(null)
@@ -231,9 +232,10 @@ export default function App() {
         "--hero-title-y",
         reduceMotion.matches ? "0px" : `${progress * 0.045}px`,
       )
+      if (curtainProgress >= 1) curtainDismissedRef.current = true
       heroRef.current.style.setProperty(
         "--curtain-y",
-        `${curtainProgress * -110}%`,
+        curtainDismissedRef.current ? "-110%" : `${curtainProgress * -110}%`,
       )
       heroRef.current.style.setProperty(
         "--curtain-fold",
