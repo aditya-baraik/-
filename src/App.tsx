@@ -3,6 +3,13 @@ import image8FrameFiles from "virtual:image8-frames"
 
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
 const image8Frames = image8FrameFiles.length ? image8FrameFiles : ["image8.webp"]
+const readMotionPreference = () => {
+  try {
+    return window.localStorage.getItem("portfolio-motion") !== "off"
+  } catch {
+    return true
+  }
+}
 
 const profile = {
   name: "Aditya Cheek Baraik",
@@ -90,9 +97,8 @@ function Arrow() {
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)
-  const [reelPlaying, setReelPlaying] = useState(
-    () => !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  )
+  const [motionEnabled, setMotionEnabled] = useState(readMotionPreference)
+  const [reelPlaying, setReelPlaying] = useState(readMotionPreference)
   const [aboutAlternateActive, setAboutAlternateActive] = useState(false)
   const [aboutPointerHovering, setAboutPointerHovering] = useState(false)
   const [image8FrameIndex, setImage8FrameIndex] = useState(0)
@@ -138,21 +144,20 @@ export default function App() {
 
   useEffect(() => {
     if (!reelVideoRef.current) return
-    if (reelPlaying) {
-      void reelVideoRef.current.play().catch(() => undefined)
+    if (reelPlaying && motionEnabled) {
+      void reelVideoRef.current.play().catch(() => setReelPlaying(false))
     } else {
       reelVideoRef.current.pause()
     }
-  }, [reelPlaying])
+  }, [reelPlaying, motionEnabled])
 
   useEffect(() => {
-    if (image8Frames.length < 2) return
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    if (!motionEnabled || image8Frames.length < 2) return
     const timer = window.setInterval(() => {
       setImage8FrameIndex((index) => (index + 1) % image8Frames.length)
     }, 4000)
     return () => window.clearInterval(timer)
-  }, [])
+  }, [motionEnabled])
 
   useEffect(() => {
     const carousel = document.querySelector(".work-tail")
@@ -293,6 +298,16 @@ export default function App() {
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
+  const toggleMotion = () => {
+    const next = !motionEnabled
+    try {
+      window.localStorage.setItem("portfolio-motion", next ? "on" : "off")
+    } catch {
+      // Keep the current-session preference even when storage is unavailable.
+    }
+    setMotionEnabled(next)
+    setReelPlaying(next)
+  }
   const renderPhotoCard = (photo: (typeof photographs)[number], index: number) => (
     <figure
       className={`photo-card photo-card--${photo.className}`}
@@ -335,7 +350,7 @@ export default function App() {
   )
 
   return (
-    <main>
+    <main className={motionEnabled ? "motion-enabled" : "motion-reduced"}>
       <div
         className={`loader ${loaded ? "loader--done" : ""}`}
         aria-hidden="true"
@@ -406,6 +421,15 @@ export default function App() {
         </nav>
         <div className="menu-panel__foot">
           <a href={`mailto:${profile.email}`}>Email</a>
+          <button
+            type="button"
+            className="menu-panel__motion"
+            onClick={toggleMotion}
+            aria-pressed={motionEnabled}
+            aria-label={motionEnabled ? "Turn off animations" : "Turn on animations"}
+          >
+            Motion: {motionEnabled ? "On" : "Off"}
+          </button>
         </div>
       </div>
 
@@ -449,8 +473,8 @@ export default function App() {
             ref={reelVideoRef}
             className="reel__video"
             src={asset("media/video1.mp4")}
-            autoPlay={reelPlaying}
-            preload="metadata"
+            autoPlay={motionEnabled && reelPlaying}
+            preload={motionEnabled ? "auto" : "metadata"}
             muted
             loop
             playsInline
@@ -462,7 +486,22 @@ export default function App() {
         <div className="reel__bottom">
           <button
             type="button"
-            onClick={() => setReelPlaying((playing) => !playing)}
+            onClick={() => {
+              if (reelPlaying) {
+                reelVideoRef.current?.pause()
+                setReelPlaying(false)
+              } else {
+                setMotionEnabled(true)
+                try {
+                  window.localStorage.setItem("portfolio-motion", "on")
+                } catch {
+                  // Playback remains available for this page session.
+                }
+                setReelPlaying(true)
+                const video = reelVideoRef.current
+                if (video) void video.play().catch(() => setReelPlaying(false))
+              }
+            }}
             aria-label={reelPlaying ? "Pause photography reel" : "Play photography reel"}
             aria-pressed={reelPlaying}
           >
